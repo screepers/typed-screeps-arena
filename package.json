@@ -5,7 +5,7 @@
     "repository": "screepers/typed-screeps-arena",
     "types": "./dist/index.d.ts",
     "files": [
-      "dist/**/*"
+      "dist/**/*.d.ts"
     ],
     "scripts": {
       "compile:dtslint": "node ./build/concat.js && node ./build/prependHeader.js",
