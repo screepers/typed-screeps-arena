@@ -4,6 +4,9 @@
 /// <reference path="prototypes/index.d.ts" />
 
 declare module "game" {
+  import { ERR_BUSY, ERR_INVALID_ARGS, ERR_NOT_ENOUGH_ENERGY } from "game/constants";
+  import { Structure } from "game/prototypes";
+
   export * as utils from "game/utils";
   export * as pathFinder from "game/path-finder";
 
@@ -23,5 +26,5 @@ declare module "game" {
     season: string;
   };
 
-  export function createConstructionSite(x: number, y: number, structurePrototype: STRUCTURE_PROTOTYPES);
+  export function createConstructionSite(x: number, y: number, structurePrototype: STRUCTURE_PROTOTYPES):{ object?: Structure; error?: ERR_BUSY | ERR_INVALID_ARGS | ERR_NOT_ENOUGH_ENERGY };
 }

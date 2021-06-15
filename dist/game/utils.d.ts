@@ -18,7 +18,6 @@ declare module "game/utils" {
   export function getTime(): number;
   /**
    * Get an object with the specified unique ID.
-   * @param id
    */
   export function getObjectById<T>(id: Id<T>): T | null;
   /**
@@ -27,7 +26,6 @@ declare module "game/utils" {
   export function getObjects(): GameObject[];
   /**
    * Get all objects in the game with the specified prototype, for example, all creeps
-   * @param prototype
    */
   export function getObjectsByPrototype<T>(prototype: _Constructor<T>): T[];
   /**
@@ -36,16 +34,12 @@ declare module "game/utils" {
   export function getHeapStatistics(): HeapStatistics;
   /**
    * Get linear direction by differences of x and y
-   * @param dx
-   * @param dy
    */
   export function getDirection(dx: number, dy: number): DirectionConstant;
 
   /**
    * Find an optimal path between fromPos and toPos. Unlike searchPath,
    * findPath avoid all obstacles by default (unless costMatrix is specified).
-   * @param fromPos
-   * @param toPos
    * @param opts object containing additional options:
    * ignore: array (objects which should be treated as obstacles during the search)
    * Any options supported by searchPath method
@@ -54,16 +48,12 @@ declare module "game/utils" {
 
   /**
    * Get linear range between two objects. a and b may be any object containing x and y properties.
-   * @param a
-   * @param b
    * @deprecated alias for getRange
    */
   export function getDistance(a: RoomPosition, b: RoomPosition): number;
 
   /**
    * Get linear range between two objects. a and b may be any object containing x and y properties.
-   * @param a
-   * @param b
    */
   export function getRange(a: RoomPosition, b: RoomPosition): number;
 
@@ -76,23 +66,16 @@ declare module "game/utils" {
 
   /**
    * Find all positions from the given positions array within the specified linear range.
-   * @param fromPos
-   * @param positions
-   * @param range
    */
   export function findInRange(fromPos: RoomPosition, positions: RoomPosition[], range: number): RoomPosition[];
 
   /**
    * Find a position with the shortest linear distance from the given position, or null otherwise.
-   * @param fromPos
-   * @param positions
    */
   export function findClosestByRange(fromPos: RoomPosition, positions: RoomPosition[]): RoomPosition;
 
   /**
    * Find a position with the shortest path from the given position, or null otherwise.
-   * @param fromPos
-   * @param positions
    * @param opts object containing additional options:
    * ignore: array (objects which should be treated as obstacles during the search)
    * Any options supported by searchPath method

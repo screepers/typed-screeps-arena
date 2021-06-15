@@ -2,7 +2,7 @@ declare module "game/path-finder" {
   import { RoomPosition, _Constructor } from "game/prototypes";
   export function searchPath(
     origin: RoomPosition,
-    goal: RoomPosition | { pos: RoomPosition; range: number } | (RoomPosition | { pos: RoomPosition; range: number })[],
+    goal: RoomPosition | { pos: RoomPosition; range: number } | Array<RoomPosition | { pos: RoomPosition; range: number }>,
     opts?: FindPathOpts
   ): FindPathResult;
 

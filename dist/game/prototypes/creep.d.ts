@@ -43,14 +43,13 @@ declare module "game/prototypes" {
      *     type: string (One of the body part types constants)
      *     hits: number (The remaining amount of hit points of this body part)
      */
-    body: { type: BodyPartConstant; hits: number }[];
+    body: Array<{ type: BodyPartConstant; hits: number }>;
     /**
      * A Store object that contains cargo of this creep.
      */
     store: Store<ResourceConstant>;
     /**
      * Move the creep one square in the specified direction. direction must be one of the following constants:
-     * @param direction
      */
     move(direction: DirectionConstant): CreepMoveReturnCode | undefined;
     /**
@@ -63,7 +62,6 @@ declare module "game/prototypes" {
     /**
      * A ranged attack against another creep or structure. Requires the RANGED_ATTACK body part.
      * The target has to be within 3 squares range of the creep.
-     * @param target
      */
     rangedAttack(target: AnyCreep | Structure): CreepActionReturnCode;
     /**
@@ -77,7 +75,6 @@ declare module "game/prototypes" {
      * Attack another creep or structure in a short-ranged attack.
      * Requires the ATTACK body part.
      * The target has to be at an adjacent square to the creep.
-     * @param target
      */
     attack(target: AnyCreep | Structure): CreepActionReturnCode;
     /**
@@ -85,7 +82,6 @@ declare module "game/prototypes" {
      * It will restore the target creep’s damaged body parts function and increase the hits counter.
      * Requires the HEAL body part.
      * The target has to be at an adjacent square to the creep.
-     * @param target
      */
     heal(target: AnyCreep): CreepActionReturnCode;
     /**
@@ -93,7 +89,6 @@ declare module "game/prototypes" {
      * It will restore the target creep’s damaged body parts function and increase the hits counter.
      * Requires the HEAL body part.
      * The target has to be within 3 squares range of the creep.
-     * @param target
      */
     rangedHeal(target: AnyCreep): CreepActionReturnCode;
 
@@ -162,7 +157,6 @@ declare module "game/prototypes" {
      *
      * The target has to be within 3 squares range of the creep.
      *
-
      * @param target The target construction site to be built.
      * @returns Result Code: OK, ERR_NOT_OWNER, ERR_BUSY, ERR_NOT_ENOUGH_RESOURCES, ERR_INVALID_TARGET, ERR_NOT_IN_RANGE, ERR_NO_BODYPART, ERR_RCL_NOT_ENOUGH
      */

@@ -29,14 +29,12 @@ declare module "game/prototypes" {
      * Remotely attack any creep or structure.
      * The target has to be within 50 squares range of the tower.
      * Attack effectiveness	600 hits at range ≤5 to 150 hits at range ≥20
-     * @param target
      */
     attack(target: AnyCreep | Structure): ScreepsReturnCode;
     /**
      * Remotely heal any creep.
      * The target has to be within 50 squares range of the tower.
      * Heal effectiveness	400 hits at range ≤5 to 100 hits at range ≥20
-     * @param target
      */
     heal(target: AnyCreep): ScreepsReturnCode;
 

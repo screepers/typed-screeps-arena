@@ -8,6 +8,9 @@
         "no-unnecessary-generics": false,
         "no-misused-new": false,
         "no-any-union": false,
-        "no-redundant-undefined": false
+        "no-redundant-undefined": false,
+        "no-single-declare-module": false,
+        "strict-export-declare-modifiers": false,
+        "whitespace":false
     }
 }
