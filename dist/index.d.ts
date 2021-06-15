@@ -1,3 +1,4 @@
+// Type definitions for Screeps 0.0.1
 // XType definitions for screeps-arena 0.0.1
 // Project: https://github.com/screepers/typed-screeps-arena
 // Definitions by: thmsn <https://github.com/thmsndk>
