@@ -32,7 +32,7 @@
     "devDependencies": {
       "concat-files": "^0.1.1",
       "copy": "^0.3.2",
-      "dtslint": "0.4.9",
+      "dtslint": "3.6.14",
       "husky": "^2.2.0",
       "lint-staged": "^8.1.6",
       "prepend": "^1.0.2",

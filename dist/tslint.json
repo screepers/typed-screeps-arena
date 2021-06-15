@@ -11,6 +11,7 @@
         "no-redundant-undefined": false,
         "no-single-declare-module": false,
         "strict-export-declare-modifiers": false,
-        "whitespace":false
+        "whitespace":false,
+        "npmNamingRule":false
     }
 }
