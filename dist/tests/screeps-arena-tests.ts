@@ -9,7 +9,10 @@ import { constants, pathFinder, prototypes, utils } from "game";
 import {
   createConstructionSite,
   getObjectsByPrototype,
-  getTime
+  getTime,
+  findInRange,
+  findPath,
+  findClosestByPath
 } from "game/utils";
 import { CostMatrix } from "game/path-finder";
 import { RESOURCE_ENERGY } from "game/constants";
@@ -24,19 +27,22 @@ export function loop(): void {
 
   const noUtilsCreeps = getObjectsByPrototype(Creep).filter(i => i.my);
 
+  // $ExpectType Creep[]
   const myCreeps = utils
     .getObjectsByPrototype(prototypes.Creep)
-    .filter(i => i.my); // $ExpectType Creep[]
+    .filter(i => i.my);
+
+  // $ExpectType Creep[]
   const enemyCreeps = utils
     .getObjectsByPrototype(prototypes.Creep)
-    .filter(i => !i.my); // $ExpectType Creep[]
-  const enemyFlag = utils.getObjectsByPrototype(Flag).find(i => !i.my); // $ExpectType Flag
+    .filter(i => !i.my);
+  const enemyFlag = utils.getObjectsByPrototype(Flag).find(i => !i.my); // $ExpectType Flag | undefined
 
-  const structures = utils.getObjectsByPrototype(Structure); // $ExpectType Structure[]
-  const ownedStructures = utils.getObjectsByPrototype(OwnedStructure); // $ExpectType OwnedStructure[]
+  const structures = utils.getObjectsByPrototype(Structure); //// $ExpectType Structure[]
+  const ownedStructures = utils.getObjectsByPrototype(OwnedStructure); //// $ExpectType OwnedStructure[]
 
-  const noUtilStructures = getObjectsByPrototype(Structure); // $ExpectType Structure[]
-  const noUtilOwnedStructures = getObjectsByPrototype(OwnedStructure); // $ExpectType OwnedStructure[]
+  const noUtilStructures = getObjectsByPrototype(Structure); //// $ExpectType Structure[]
+  const noUtilOwnedStructures = getObjectsByPrototype(OwnedStructure); //// $ExpectType OwnedStructure[]
 
   // verification that getObjectById works.
   const creepForId = myCreeps[0];
@@ -51,14 +57,34 @@ export function loop(): void {
     const energyStored = myTower.store[RESOURCE_ENERGY];
     const maxCapacity = myTower.store.getCapacity(RESOURCE_ENERGY);
 
+    // $ExpectType Creep
     const findClosestByRange = myTower.findClosestByRange(
       getObjectsByPrototype(Creep).filter(i => !i.my)
-    ); // $ExpectType Creep
-    const findInRange = myTower.findInRange(enemyCreeps, 1); // $ExpectType Creep[]
-    const findPathTo = myTower.findPathTo(findInRange[0]); // $ExpectType PathStep[]
+    );
+
+    const findInRangeResult = myTower.findInRange(enemyCreeps, 1); // $ExpectType Creep[]
+    const findPathToResult = myTower.findPathTo(findInRangeResult[0]); // $ExpectType PathStep[]
     // TODO: findPathTo with options
-    const findClosestByPath = myTower.findClosestByPath(enemyCreeps);
+    const findClosestByPathResult = myTower.findClosestByPath(enemyCreeps); // $ExpectType Creep
     // TODO: findClosestByPath with options
+
+    // testing utils
+    const utilsFindInRangeResult = findInRange(myTower, enemyCreeps, 1); // $ExpectType Creep[]
+    const utilsFindPathToResult = findPath(myTower, utilsFindInRangeResult[0]); // $ExpectType PathStep[]
+    // TODO: findPathTo with options
+    const utilsFindClosestByPathResult = findClosestByPath(
+      myTower,
+      enemyCreeps
+    ); // $ExpectType Creep
+    // TODO: findClosestByPath with options
+
+    if (enemyFlag) {
+      const positions: Array<Creep | Flag> = [...enemyCreeps, enemyFlag];
+      const findInRangeMultipleTypesOfPositions = myTower.findInRange(
+        positions,
+        1
+      ); // $ExpectType (Creep | Flag)[]
+    }
   }
 
   // build a rampart

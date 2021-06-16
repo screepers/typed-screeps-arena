@@ -17,7 +17,8 @@ declare module "game/prototypes" {
      */
     structurePrototypeName: string;
 
-    // TODO: ConstructionSite object now has a new property structure that links to the corresponding Structure object. It will be the live object instance that will appear when the construction site is completed. You can check what structure is being constructed using the instanceof operator:
+    // TODO: ConstructionSite object now has a new property structure that links to the corresponding Structure object.
+    // It will be the live object instance that will appear when the construction site is completed. You can check what structure is being constructed using the instanceof operator:
 
     /**
      * Whether it is your construction site.

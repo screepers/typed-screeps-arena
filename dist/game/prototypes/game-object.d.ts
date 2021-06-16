@@ -31,12 +31,12 @@ declare module "game/prototypes" {
     /**
      * Find all positions from the given positions array within the specified linear range.
      */
-    findInRange(positions: RoomPosition[], range: number): RoomPosition[];
+    findInRange<T extends RoomPosition>(positions: T[], range: number): T[];
 
     /**
      * Find a position with the shortest linear distance from the given position, or null otherwise.
      */
-    findClosestByRange(positions: RoomPosition[]): RoomPosition;
+    findClosestByRange<T extends RoomPosition>(positions: T[]): T;
 
     /**
      * Find a position with the shortest path from the given position, or null otherwise.
@@ -44,7 +44,10 @@ declare module "game/prototypes" {
      * ignore: array (objects which should be treated as obstacles during the search)
      * Any options supported by searchPath method
      */
-    findClosestByPath(positions: RoomPosition[], opts?: FindPathOpts): RoomPosition;
+    findClosestByPath<T extends RoomPosition>(
+      positions: T[],
+      opts?: FindPathOpts
+    ): T;
 
     toJSON(): RoomObjectJSON;
   }
