@@ -27,6 +27,12 @@ export function loop(): void {
 
   const noUtilsCreeps = getObjectsByPrototype(Creep).filter(i => i.my);
 
+  // $ExpectType StructureContainer[]
+  const containers = utils.getObjectsByPrototype(prototypes.StructureContainer);
+
+  // $ExpectType StructureContainer[]
+  const extensions = utils.getObjectsByPrototype(prototypes.StructureContainer);
+
   // $ExpectType Creep[]
   const myCreeps = utils
     .getObjectsByPrototype(prototypes.Creep)
