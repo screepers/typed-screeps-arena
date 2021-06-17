@@ -1,4 +1,3 @@
-// Type definitions for screeps-arena 0.0.1
 // Project: https://github.com/screepers/typed-screeps-arena
 // Definitions by: thmsn <https://github.com/thmsndk>
 //                 Skyler Kehren <https://github.com/pyrodogg>
