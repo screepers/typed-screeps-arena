@@ -1,5 +1,5 @@
 {
-    "extends": "dtslint/dt.json",
+    "extends": "dtslint/dtslint.json",
     "rules": {
         "file-name-casing": false,
         "no-redundant-jsdoc-2": false,
@@ -12,6 +12,7 @@
         "no-single-declare-module": false,
         "strict-export-declare-modifiers": false,
         "whitespace":false,
-        "npmNamingRule":false
+        "npmNamingRule":false,
+        "npm-naming": false
     }
 }
