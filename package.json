@@ -1,6 +1,6 @@
 {
     "name": "typed-screeps-arena",
-    "version": "0.0.1-test",
+    "version": "0.0.1",
     "description": "Strong TypeScript declarations for the game Screeps:Arena",
     "repository": "screepers/typed-screeps-arena",
     "types": "./dist/**/*.d.ts",
