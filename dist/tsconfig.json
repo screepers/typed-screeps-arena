@@ -1,9 +1,8 @@
 {
   "compilerOptions": {
-    "module": "esnext",
+    "module": "commonjs",
     "lib": ["esnext"],
     "target": "es2017",
-    "moduleResolution": "Node",
     "noImplicitAny": true,
     "noImplicitThis": true,
     "strictNullChecks": true,
@@ -14,5 +13,5 @@
     "noEmit": true,
     "forceConsistentCasingInFileNames": true
   },
-  "files": ["index.d.ts", "screeps-arena-tests.ts"]
+  "files": ["index.d.ts", "test/screeps-arena-tests.ts"]
 }

@@ -3,9 +3,9 @@
     "version": "0.0.1",
     "description": "Strong TypeScript declarations for the game Screeps:Arena",
     "repository": "screepers/typed-screeps-arena",
-    "types": "./dist/index.d.ts",
+    "types": "./dist/**/*.d.ts",
     "files": [
-      "dist/index.d.ts"
+      "dist/**/*.d.ts"
     ],
     "scripts": {
       "compile:dtslint": "node ./build/concat.js && node ./build/prependHeader.js",
@@ -32,7 +32,7 @@
     "devDependencies": {
       "concat-files": "^0.1.1",
       "copy": "^0.3.2",
-      "dtslint": "0.4.9",
+      "dtslint": "3.6.14",
       "husky": "^2.2.0",
       "lint-staged": "^8.1.6",
       "prepend": "^1.0.2",
@@ -42,16 +42,5 @@
       "tslint-config-prettier": "^1.17.0",
       "tslint-plugin-prettier": "^2.0.1",
       "typescript": "^3.8.3"
-    },
-    "husky": {
-      "hooks": {
-        "pre-commit": "lint-staged && npm run pre-commit"
-      }
-    },
-    "lint-staged": {
-      "*.{ts,tsx}": [
-        "prettier --write",
-        "git add"
-      ]
     }
   }
