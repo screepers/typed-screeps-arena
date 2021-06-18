@@ -5,6 +5,7 @@ import {
   StructureRampart,
   StructureTower
 } from "game/prototypes";
+import { Flag, RESOURCE_SCORE, ScoreCollector } from "arena";
 import { constants, pathFinder, prototypes, utils } from "game";
 import {
   createConstructionSite,
@@ -16,7 +17,6 @@ import {
 } from "game/utils";
 import { CostMatrix } from "game/path-finder";
 import { RESOURCE_ENERGY } from "game/constants";
-import { Flag } from "arena";
 
 export function loop(): void {
   // console.log(`The time is ${getTime()}`);
@@ -93,6 +93,14 @@ export function loop(): void {
         1
       );
     }
+  }
+
+  // verification of arena score
+  const scoreTestCreep = utils.getObjectsByPrototype(Creep).find(i => i.my);
+  const scoreCollector = utils.getObjectsByPrototype(ScoreCollector)[0];
+  if (scoreTestCreep && scoreCollector) {
+    const scoreStored = scoreTestCreep.store[RESOURCE_SCORE];
+    scoreTestCreep.transfer(scoreCollector, RESOURCE_SCORE);
   }
 
   // build a rampart
