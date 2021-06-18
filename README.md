@@ -2,6 +2,8 @@
 
 Typings for the game Screeps:Arena based on the following docs https://steamcommunity.com/sharedfiles/filedetails/?id=2505541950
 
+They are currently used primarly for https://github.com/screepers/screeps-arena-typescript-starter but the intention is for them to be usefull in general.
+
 ## Installation
 
 Current installation instructions untill we have pushed a package to DT
@@ -22,7 +24,7 @@ Updating types
 
 ## Future Installation
 
-The type definitions are published on [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped). To install them, run the following.
+The type definitions are not yet published on [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped). ~~To install them, run the following.~~
 
 ```bash
 # npm
