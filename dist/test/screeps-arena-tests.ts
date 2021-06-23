@@ -109,5 +109,11 @@ export function loop(): void {
   // TODO: verify all buildable structure types
   // TODO: cSites .structure property.
 
+  // overload of createConstructionSite
+  createConstructionSite({ x: 10, y: 10 }, StructureRampart);
+  if (myTower) {
+    createConstructionSite(myTower, StructureRampart);
+  }
+
   // TODO: test utils findXXX methods, theese methods are used by other metods.
 }
