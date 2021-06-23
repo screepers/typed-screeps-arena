@@ -63,7 +63,7 @@ export function loop(): void {
     const energyStored = myTower.store[RESOURCE_ENERGY];
     const maxCapacity = myTower.store.getCapacity(RESOURCE_ENERGY);
 
-    // $ExpectType Creep
+    // $ExpectType Creep | null
     const findClosestByRange = myTower.findClosestByRange(
       getObjectsByPrototype(Creep).filter(i => !i.my)
     );
@@ -71,7 +71,7 @@ export function loop(): void {
     const findInRangeResult = myTower.findInRange(enemyCreeps, 1); // $ExpectType Creep[]
     const findPathToResult = myTower.findPathTo(findInRangeResult[0]); // $ExpectType PathStep[]
     // TODO: findPathTo with options
-    const findClosestByPathResult = myTower.findClosestByPath(enemyCreeps); // $ExpectType Creep
+    const findClosestByPathResult = myTower.findClosestByPath(enemyCreeps); // $ExpectType Creep | null
     // TODO: findClosestByPath with options
 
     // testing utils
