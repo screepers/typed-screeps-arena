@@ -4,5 +4,5 @@
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // Minimum TypeScript Version: 3.8
 
-/// <reference path="game/index.d.ts" />
-/// <reference path="arena/index.d.ts" />
+export * from "./arena";
+export * from "./game";

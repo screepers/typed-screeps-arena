@@ -1,5 +1,5 @@
-declare module "game/prototypes" {
-  import { FindPathOpts, PathStep } from "game/path-finder";
+import type { FindPathOpts, PathStep } from "../path-finder";
+import type { Id, RoomPosition } from "../prototypes";
   export interface RoomObjectJSON {
     id: number;
     x: number;
@@ -51,4 +51,3 @@ declare module "game/prototypes" {
 
     toJSON(): RoomObjectJSON;
   }
-}

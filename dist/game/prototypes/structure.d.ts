@@ -1,4 +1,14 @@
-declare module "game/prototypes" {
+import type { GameObject,
+  RoomObjectJSON,
+  STRUCTURE_CONTAINER,
+  STRUCTURE_EXTENSION,
+  STRUCTURE_RAMPART,
+  STRUCTURE_ROAD,
+  STRUCTURE_SPAWN,
+  STRUCTURE_TOWER,
+  STRUCTURE_WALL,
+  _Constructor } from "../prototypes";
+
   export type StructureConstant =
     | STRUCTURE_TOWER
     | STRUCTURE_EXTENSION
@@ -13,6 +23,7 @@ declare module "game/prototypes" {
     hits: number;
     hitsMax: number;
   }
+
   export interface Structure<T extends StructureConstant = StructureConstant> extends GameObject {
     readonly prototype: Structure;
 
@@ -51,4 +62,3 @@ declare module "game/prototypes" {
   }
 
   export const Structure: _Constructor<Structure>;
-}

@@ -1,4 +1,5 @@
-declare module "game/prototypes" {
+import type { GameObject, _Constructor } from "../prototypes";
+
   export interface Resource extends GameObject {
     readonly prototype: Resource;
     amount: number;
@@ -13,4 +14,3 @@ declare module "game/prototypes" {
   }
 
   export const Resource: _Constructor<Resource>;
-}

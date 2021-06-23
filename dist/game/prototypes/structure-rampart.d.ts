@@ -1,4 +1,5 @@
-declare module "game/prototypes" {
+import type { OwnedStructure, _Constructor, _ConstructorById } from "../prototypes";
+
   export type STRUCTURE_RAMPART = "rampart";
   // export const STRUCTURE_RAMPART: STRUCTURE_RAMPART;
 
@@ -7,4 +8,3 @@ declare module "game/prototypes" {
   interface StructureRampartConstructor extends _Constructor<StructureRampart>, _ConstructorById<StructureRampart> {}
 
   export const StructureRampart: StructureRampartConstructor;
-}

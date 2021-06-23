@@ -1,4 +1,5 @@
-declare module "game/prototypes" {
+import type { Structure, StructureConstant, StructureJSON, _Constructor } from "../prototypes";
+
   interface OwnedStructureJSON extends StructureJSON {
     my: boolean | undefined;
   }
@@ -16,4 +17,3 @@ declare module "game/prototypes" {
     toJSON(): OwnedStructureJSON;
   }
   export const OwnedStructure: _Constructor<OwnedStructure>;
-}

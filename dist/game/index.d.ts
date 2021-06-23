@@ -1,18 +1,12 @@
-/// <reference path="utils.d.ts" />
-/// <reference path="path-finder.d.ts" />
-/// <reference path="constants.d.ts" />
-/// <reference path="prototypes/index.d.ts" />
+  import type { ERR_BUSY, ERR_INVALID_ARGS, ERR_NOT_ENOUGH_ENERGY } from "./constants";
+  import type { Structure } from "./prototypes";
 
-declare module "game" {
-  import { ERR_BUSY, ERR_INVALID_ARGS, ERR_NOT_ENOUGH_ENERGY } from "game/constants";
-  import { Structure } from "game/prototypes";
+  export * as utils from "./utils";
+  export * as pathFinder from "./path-finder";
 
-  export * as utils from "game/utils";
-  export * as pathFinder from "game/path-finder";
+  export * as prototypes from "./prototypes";
 
-  export * as prototypes from "game/prototypes";
-
-  export * as constants from "game/constants";
+  export * as constants from "./constants";
 
   export const arenaInfo: {
     /**
@@ -28,4 +22,3 @@ declare module "game" {
 
   export function createConstructionSite(x: number, y: number, structurePrototype: string /*STRUCTURE_PROTOTYPES*/):
   { object?: Structure; error?: ERR_BUSY | ERR_INVALID_ARGS | ERR_NOT_ENOUGH_ENERGY };
-}

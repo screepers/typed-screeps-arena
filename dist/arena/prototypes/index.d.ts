@@ -1,3 +1,3 @@
-/// <reference path="flag.d.ts" />
-/// <reference path="body-part.d.ts" />
-/// <reference path="score-collector.d.ts" />
+export * from "./flag";
+export * from "./body-part";
+export * from "./score-collector";

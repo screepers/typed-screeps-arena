@@ -4,9 +4,9 @@ import {
   Structure,
   StructureRampart,
   StructureTower
-} from "game/prototypes";
-import { Flag, RESOURCE_SCORE, ScoreCollector } from "arena";
-import { constants, pathFinder, prototypes, utils } from "game";
+} from "/game/prototypes";
+import { Flag, RESOURCE_SCORE, ScoreCollector } from "/arena";
+import { constants, pathFinder, prototypes, utils } from "/game";
 import {
   createConstructionSite,
   getObjectsByPrototype,
@@ -14,9 +14,9 @@ import {
   findInRange,
   findPath,
   findClosestByPath
-} from "game/utils";
-import { CostMatrix } from "game/path-finder";
-import { RESOURCE_ENERGY } from "game/constants";
+} from "/game/utils";
+import { CostMatrix } from "/game/path-finder";
+import { RESOURCE_ENERGY } from "/game/constants";
 
 export function loop(): void {
   // console.log(`The time is ${getTime()}`);

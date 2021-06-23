@@ -1,5 +1,5 @@
-declare module "game/prototypes" {
-  import { ResourceConstant } from "game/constants";
+  import type { OwnedStructure, Store, _Constructor, _ConstructorById } from "../prototypes";
+import type { ResourceConstant } from "../constants";
   export type STRUCTURE_EXTENSION = "extension";
   // export const STRUCTURE_EXTENSION: STRUCTURE_EXTENSION;
   export interface StructureExtension extends OwnedStructure<STRUCTURE_EXTENSION> {
@@ -13,4 +13,3 @@ declare module "game/prototypes" {
       _ConstructorById<StructureExtension> {}
 
   export const StructureExtension: StructureExtensionConstructor;
-}

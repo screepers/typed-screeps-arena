@@ -1,5 +1,5 @@
-declare module "game/prototypes" {
-  import { ERR_NOT_OWNER, OK, STRUCTURE_PROTOTYPES } from "game/constants";
+import type { GameObject, _Constructor, _ConstructorById } from "../prototypes";
+import type { ERR_NOT_OWNER, OK, STRUCTURE_PROTOTYPES } from "../constants";
   export interface ConstructionSite extends GameObject {
     readonly prototype: ConstructionSite;
 
@@ -33,4 +33,3 @@ declare module "game/prototypes" {
       _ConstructorById<ConstructionSite> {}
 
   export const ConstructionSite: ConstructionSiteConstructor;
-}

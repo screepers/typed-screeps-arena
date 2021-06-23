@@ -1,5 +1,4 @@
-declare module "game/path-finder" {
-  import { RoomPosition, _Constructor } from "game/prototypes";
+  import type { RoomPosition, _Constructor } from "./prototypes";
   export function searchPath(
     origin: RoomPosition,
     goal: RoomPosition | { pos: RoomPosition; range: number } | Array<RoomPosition | { pos: RoomPosition; range: number }>,
@@ -195,4 +194,3 @@ declare module "game/path-finder" {
     // dy: number;
     // direction: DirectionConstant;
   }
-}

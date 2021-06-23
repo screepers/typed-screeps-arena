@@ -15,7 +15,7 @@
       "format:build": "prettier --write 'build/**/*.js'",
       "format:src": "prettier --write 'src/**/*.ts'",
       "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
-      "lint:test": "tslint -p dist/tsconfig.json 'dist/screeps-arena-tests.ts'",
+      "lint:test": "tslint -p dist/tsconfig.json 'dist/test/screeps-arena-tests.ts'",
       "pre-commit": "npm run compile && git add dist/index.d.ts",
       "prepare": "npm test",
       "test": "npm run dtslint"
@@ -42,16 +42,5 @@
       "tslint-config-prettier": "^1.17.0",
       "tslint-plugin-prettier": "^2.0.1",
       "typescript": "^3.8.3"
-    },
-    "husky": {
-      "hooks": {
-        "pre-commit": "lint-staged && npm run pre-commit"
-      }
-    },
-    "lint-staged": {
-      "*.{ts,tsx}": [
-        "prettier --write",
-        "git add"
-      ]
     }
   }

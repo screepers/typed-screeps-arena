@@ -1,4 +1,5 @@
-declare module "game/prototypes" {
+import type { GameObject, _Constructor } from "../prototypes";
+
   export interface Source extends GameObject {
     readonly prototype: Source;
 
@@ -14,4 +15,3 @@ declare module "game/prototypes" {
   }
 
   export const Source: _Constructor<Source>;
-}

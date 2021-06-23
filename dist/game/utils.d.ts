@@ -1,6 +1,4 @@
-/* eslint-disable camelcase */
-declare module "game/utils" {
-  import {
+  import type {
     BuildableStructure,
     DirectionConstant,
     ERR_FULL,
@@ -8,15 +6,15 @@ declare module "game/utils" {
     ERR_INVALID_TARGET,
     TERRAIN_SWAMP,
     TERRAIN_WALL
-  } from "game/constants";
-  import {
+  } from "./constants";
+  import type {
     ConstructionSite,
     GameObject,
     Id,
     RoomPosition,
     _Constructor
-  } from "game/prototypes";
-  import { FindPathOpts, PathStep } from "game/path-finder";
+  } from "./prototypes";
+  import type { FindPathOpts, PathStep } from "./path-finder";
 
   /**
    * Get count of game ticks passed since the start of the game
@@ -133,4 +131,3 @@ declare module "game/utils" {
     does_zap_garbage: 0 | 1;
     externally_allocated_size: number;
   }
-}

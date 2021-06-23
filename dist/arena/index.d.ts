@@ -1,7 +1,3 @@
-/// <reference path="prototypes/index.d.ts" />
-/// <reference path="constants.d.ts" />
-
-declare module "arena" {
-  export * from "arena/prototypes";
-  export * from "arena/constants";
-}
+declare module "/arena";
+export * from "./prototypes";
+export * from "./constants";

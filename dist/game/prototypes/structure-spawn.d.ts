@@ -1,12 +1,11 @@
-declare module "game/prototypes" {
-  import {
+  import type {
     BodyPartConstant,
     ERR_BUSY,
     ERR_INVALID_ARGS,
     ERR_NOT_ENOUGH_ENERGY,
     ResourceConstant
-  } from "game/constants";
-  import { Store } from "game/prototypes";
+  } from "../constants";
+  import type { Creep, OwnedStructure, Store, _Constructor, _ConstructorById } from "../prototypes";
   export type STRUCTURE_SPAWN = "spawn";
   // export const STRUCTURE_SPAWN: STRUCTURE_SPAWN;
   export interface StructureSpawn extends OwnedStructure<STRUCTURE_SPAWN> {
@@ -25,4 +24,3 @@ declare module "game/prototypes" {
   interface StructureSpawnConstructor extends _Constructor<StructureSpawn>, _ConstructorById<StructureSpawn> {}
 
   export const StructureSpawn: StructureSpawnConstructor;
-}
