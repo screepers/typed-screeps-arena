@@ -5,7 +5,7 @@ import {
   StructureRampart,
   StructureTower
 } from "game/prototypes";
-import { Flag, RESOURCE_SCORE, ScoreCollector } from "arena";
+import { Flag, RESOURCE_SCORE, ScoreCollector, AreaEffect } from "arena";
 import { constants, pathFinder, prototypes, utils } from "game";
 import {
   createConstructionSite,
@@ -17,6 +17,7 @@ import {
 } from "game/utils";
 import { CostMatrix } from "game/path-finder";
 import { RESOURCE_ENERGY } from "game/constants";
+import { EFFECT_DAMAGE, EFFECT_FREEZE, RESOURCE_SCORE_X, RESOURCE_SCORE_Y, RESOURCE_SCORE_Z } from "arena/constants";
 
 export function loop(): void {
   // console.log(`The time is ${getTime()}`);
@@ -101,7 +102,19 @@ export function loop(): void {
   if (scoreTestCreep && scoreCollector) {
     const scoreStored = scoreTestCreep.store[RESOURCE_SCORE];
     scoreTestCreep.transfer(scoreCollector, RESOURCE_SCORE);
+
+    // $ExpectType boolean
+    const inControl = scoreCollector.my;
+
+    scoreTestCreep.transfer(scoreCollector, RESOURCE_SCORE_X);
+    scoreTestCreep.transfer(scoreCollector, RESOURCE_SCORE_Y);
+    scoreTestCreep.transfer(scoreCollector, RESOURCE_SCORE_Z);
   }
+
+  // $ExpectType AreaEffect[]
+  const areaEffects = utils.getObjectsByPrototype(AreaEffect);
+  const freezeEffects = areaEffects.filter(x => x.effect === EFFECT_FREEZE);
+  const damageEffects = areaEffects.filter(x => x.effect === EFFECT_DAMAGE);
 
   // build a rampart
   createConstructionSite(10, 10, StructureRampart);

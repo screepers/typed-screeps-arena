@@ -1,8 +1,6 @@
 declare module "arena/prototypes" {
-  export type STRUCTURE_SCORE_COLLECTOR = "constructedWall";
-  import { OwnedStructure, _Constructor } from "game/prototypes";
-  export interface ScoreCollector
-    extends OwnedStructure<STRUCTURE_SCORE_COLLECTOR> {
+  import { GameObject, _Constructor } from "game/prototypes";
+  export interface ScoreCollector extends GameObject {
     /**
      * The type of the resource this collector accepts.
      */

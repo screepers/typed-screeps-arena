@@ -1,6 +1,6 @@
 declare module "game/constants" {
-  import { RESOURCE_SCORE } from "arena";
-  import {
+  import type { ArenaResourceConstant } from "arena";
+  import type {
     Creep,
     STRUCTURE_CONTAINER,
     STRUCTURE_EXTENSION,
@@ -181,9 +181,10 @@ declare module "game/constants" {
   export const TOWER_RANGE: number;
   export const TOWER_COOLDOWN: number;
 
-  export const RESOURCE_ENERGY: "energy";
+  export type RESOURCE_ENERGY = "energy";
+  export const RESOURCE_ENERGY: RESOURCE_ENERGY;
 
-  export type ResourceConstant = typeof RESOURCE_ENERGY | typeof RESOURCE_SCORE;
+  export type ResourceConstant = RESOURCE_ENERGY | ArenaResourceConstant;
 
   export type AnyCreep = Creep; /* | PowerCreep;*/
 
