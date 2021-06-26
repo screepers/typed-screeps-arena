@@ -10,7 +10,7 @@ import { constants, pathFinder, prototypes, utils } from "game";
 import {
   createConstructionSite,
   getObjectsByPrototype,
-  getTime,
+  getTicks,
   findInRange,
   findPath,
   findClosestByPath
@@ -20,7 +20,7 @@ import { RESOURCE_ENERGY } from "game/constants";
 import { EFFECT_DAMAGE, EFFECT_FREEZE, RESOURCE_SCORE_X, RESOURCE_SCORE_Y, RESOURCE_SCORE_Z } from "arena/constants";
 
 export function loop(): void {
-  // console.log(`The time is ${getTime()}`);
+  // console.log(`The time is ${getTicks()}`);
 
   const attack = constants.ATTACK;
 
