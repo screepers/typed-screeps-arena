@@ -16,14 +16,29 @@ declare module "game" {
 
   export const arenaInfo: {
     /**
-     * "Capture the Flag"
+     * The name of the arena. "Capture the Flag", "Spawn and Swamp", "Collect and Control"
      */
     name: string;
+    /**
+     * Currently equals to 1 for basic arena and 2 for advanced.
+     */
     level: number;
     /**
-     * "alpha"
+     * Currently equals to "alpha".
      */
     season: string;
+    /**
+     * Game ticks limit.
+     */
+    ticksLimit: number;
+    /**
+     * CPU wall time execution limit per one tick (except the first tick).
+     */
+    cpuTimeLimit: number;
+    /**
+     * CPU wall time limit on the first tick.
+     */
+    cpuTimeLimitFirstTick: number;
   };
 
   export function createConstructionSite(x: number, y: number, structurePrototype: string /*STRUCTURE_PROTOTYPES*/):

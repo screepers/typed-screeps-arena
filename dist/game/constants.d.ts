@@ -89,9 +89,7 @@ declare module "game/constants" {
     | ERR_INVALID_ARGS
     | ERR_TIRED
     | ERR_NO_BODYPART
-    | ERR_NOT_ENOUGH_EXTENSIONS
-    | ERR_RCL_NOT_ENOUGH
-    | ERR_GCL_NOT_ENOUGH;
+    | ERR_NOT_ENOUGH_EXTENSIONS;
 
   export type OK = 0;
   export type ERR_NOT_OWNER = -1;
@@ -108,8 +106,6 @@ declare module "game/constants" {
   export type ERR_TIRED = -11;
   export type ERR_NO_BODYPART = -12;
   export type ERR_NOT_ENOUGH_EXTENSIONS = -6;
-  export type ERR_RCL_NOT_ENOUGH = -14;
-  export type ERR_GCL_NOT_ENOUGH = -15;
 
   export type CreepActionReturnCode =
     | OK

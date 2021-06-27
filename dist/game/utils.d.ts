@@ -21,7 +21,7 @@ declare module "game/utils" {
   /**
    * Get count of game ticks passed since the start of the game
    */
-  export function getTime(): number;
+  export function getTicks(): number;
   /**
    * Get an object with the specified unique ID.
    */
@@ -134,6 +134,10 @@ declare module "game/utils" {
     object?: ConstructionSite;
     error?: ERR_INVALID_ARGS | ERR_INVALID_TARGET | ERR_FULL;
   };
+  /**
+   * Get CPU wall time elapsed in the current tick in nanoseconds.
+   */
+   export function getCpuTime(): number;
 
   export interface HeapStatistics {
     total_heap_size: number;
