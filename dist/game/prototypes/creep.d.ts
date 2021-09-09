@@ -15,7 +15,6 @@ declare module "game/prototypes" {
     ERR_NOT_OWNER,
     ERR_NO_BODYPART,
     ERR_NO_PATH,
-    ERR_RCL_NOT_ENOUGH,
     OK,
     ResourceConstant,
     ScreepsReturnCode
