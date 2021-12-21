@@ -1,8 +1,11 @@
 declare module "game/path-finder" {
-  import { RoomPosition, _Constructor } from "game/prototypes";
+  import { GameObject, RoomPosition, _Constructor } from "game/prototypes";
   export function searchPath(
     origin: RoomPosition,
-    goal: RoomPosition | { pos: RoomPosition; range: number } | Array<RoomPosition | { pos: RoomPosition; range: number }>,
+    goal:
+      | RoomPosition
+      | { pos: RoomPosition; range: number }
+      | Array<RoomPosition | { pos: RoomPosition; range: number }>,
     opts?: FindPathOpts
   ): FindPathResult;
 
@@ -43,7 +46,9 @@ declare module "game/path-finder" {
     deserialize(val: number[]): CostMatrix;
   }
 
-  interface CostMatrixConstructor extends _Constructor<CostMatrix>, CostMatrix {}
+  interface CostMatrixConstructor
+    extends _Constructor<CostMatrix>,
+      CostMatrix {}
 
   export const CostMatrix: CostMatrixConstructor;
 
@@ -132,6 +137,11 @@ declare module "game/path-finder" {
      * CostMatrix (Container for custom navigation cost data)
      */
     costMatrix?: CostMatrix;
+
+    /**
+     * An array of the room's objects or RoomPosition objects which should be treated as obstacles during the search
+     */
+    ignore?: RoomPosition[];
   }
 
   export interface MoveToOpts extends FindPathOpts {
@@ -142,29 +152,20 @@ declare module "game/path-finder" {
     // //  * to make the movement more consistent. Set to 0 if you want to disable path reusing.
     // //  */
     // // reusePath?: number;
-
     // // /**
     // //  * If `reusePath` is enabled and this option is set to true, the path will be stored in memory in the short serialized form using
     // //  * `Room.serializePath`. The default value is true.
     // //  */
     // // serializeMemory?: boolean;
-
     // // /**
     // //  * If this option is set to true, `moveTo` method will return `ERR_NOT_FOUND` if there is no memorized path to reuse. This can
     // //  * significantly save CPU time in some cases. The default value is false.
     // //  */
     // // noPathFinding?: boolean;
-
     // // /**
     // //  * Draw a line along the creep’s path using `RoomVisual.poly`. You can provide either an empty object or custom style parameters.
     // //  */
     // // visualizePathStyle?: PolyStyle;
-
-    /**
-     * An array of the room's objects or RoomPosition objects which should be treated as obstacles during the search. This option cannot
-     * be used when the new PathFinder is enabled (use costCallback option instead).
-     */
-    ignore?: any[] | RoomPosition[];
   }
 
   export interface FindPathResult {
