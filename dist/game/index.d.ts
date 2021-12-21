@@ -2,17 +2,21 @@
 /// <reference path="path-finder.d.ts" />
 /// <reference path="constants.d.ts" />
 /// <reference path="prototypes/index.d.ts" />
+/// <reference path="visual.d.ts" />
 
 declare module "game" {
   import { ERR_BUSY, ERR_INVALID_ARGS, ERR_NOT_ENOUGH_ENERGY } from "game/constants";
   import { Structure } from "game/prototypes";
 
-  export * as utils from "game/utils";
+  export * from "game/utils";
+
   export * as pathFinder from "game/path-finder";
 
   export * as prototypes from "game/prototypes";
 
   export * as constants from "game/constants";
+
+  export * as visual from "game/visual";
 
   export const arenaInfo: {
     /**
