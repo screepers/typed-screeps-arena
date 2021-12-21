@@ -139,9 +139,9 @@ declare module "game/path-finder" {
     costMatrix?: CostMatrix;
 
     /**
-     * Objects which should not be treated as obstacles during the search
+     * An array of the room's objects or RoomPosition objects which should be treated as obstacles during the search
      */
-    ignore?: _Constructor<GameObject>[];
+    ignore?: RoomPosition[];
   }
 
   export interface MoveToOpts extends FindPathOpts {
