@@ -6,7 +6,7 @@ import {
   StructureTower,
 } from "game/prototypes";
 import { Flag, RESOURCE_SCORE, ScoreCollector, AreaEffect } from "arena";
-import { constants, pathFinder, prototypes, utils } from "game";
+import { constants, pathFinder, prototypes } from "game";
 import {
   createConstructionSite,
   getObjectsByPrototype,
@@ -15,6 +15,7 @@ import {
   findInRange,
   findPath,
   findClosestByPath,
+  getObjectById
 } from "game/utils";
 import { CostMatrix } from "game/path-finder";
 import { RESOURCE_ENERGY } from "game/constants";
@@ -23,10 +24,8 @@ import {
   EFFECT_FREEZE,
   RESOURCE_SCORE_X,
   RESOURCE_SCORE_Y,
-  RESOURCE_SCORE_Z,
+  RESOURCE_SCORE_Z
 } from "arena/constants";
-
-// console.log(`The time is ${getTicks()}`);
 
 export function loop(): void {
   // console.log(`The time is ${getTime()}`);
@@ -38,24 +37,22 @@ export function loop(): void {
   const noUtilsCreeps = getObjectsByPrototype(Creep).filter((i) => i.my);
 
   // $ExpectType StructureContainer[]
-  const containers = utils.getObjectsByPrototype(prototypes.StructureContainer);
+  const containers = getObjectsByPrototype(prototypes.StructureContainer);
 
   // $ExpectType StructureContainer[]
-  const extensions = utils.getObjectsByPrototype(prototypes.StructureContainer);
+  const extensions = getObjectsByPrototype(prototypes.StructureContainer);
 
   // $ExpectType Creep[]
-  const myCreeps = utils
-    .getObjectsByPrototype(prototypes.Creep)
-    .filter((i) => i.my);
+  const myCreeps = getObjectsByPrototype(prototypes.Creep).filter(i => i.my);
 
   // $ExpectType Creep[]
-  const enemyCreeps = utils
-    .getObjectsByPrototype(prototypes.Creep)
-    .filter((i) => !i.my);
-  const enemyFlag = utils.getObjectsByPrototype(Flag).find((i) => !i.my); // $ExpectType Flag | undefined
+  const enemyCreeps = getObjectsByPrototype(prototypes.Creep).filter(
+    i => !i.my
+  );
+  const enemyFlag = getObjectsByPrototype(Flag).find(i => !i.my); // $ExpectType Flag | undefined
 
-  const structures = utils.getObjectsByPrototype(Structure); //// $ExpectType Structure[]
-  const ownedStructures = utils.getObjectsByPrototype(OwnedStructure); //// $ExpectType OwnedStructure[]
+  const structures = getObjectsByPrototype(Structure); //// $ExpectType Structure[]
+  const ownedStructures = getObjectsByPrototype(OwnedStructure); //// $ExpectType OwnedStructure[]
 
   const noUtilStructures = getObjectsByPrototype(Structure); //// $ExpectType Structure[]
   const noUtilOwnedStructures = getObjectsByPrototype(OwnedStructure); //// $ExpectType OwnedStructure[]
@@ -63,12 +60,12 @@ export function loop(): void {
   // verification that getObjectById works.
   const creepForId = myCreeps[0];
   if (creepForId) {
-    const creepFromGetObjectById = utils.getObjectById(creepForId.id);
+    const creepFromGetObjectById = getObjectById(creepForId.id);
   }
   // TODO: creep actions
 
   // verification of Store object
-  const myTower = utils.getObjectsByPrototype(StructureTower).find((i) => i.my);
+  const myTower = getObjectsByPrototype(StructureTower).find(i => i.my);
   if (myTower) {
     const energyStored = myTower.store[RESOURCE_ENERGY];
     const maxCapacity = myTower.store.getCapacity(RESOURCE_ENERGY);
@@ -106,8 +103,8 @@ export function loop(): void {
   }
 
   // verification of arena score
-  const scoreTestCreep = utils.getObjectsByPrototype(Creep).find((i) => i.my);
-  const scoreCollector = utils.getObjectsByPrototype(ScoreCollector)[0];
+  const scoreTestCreep = getObjectsByPrototype(Creep).find(i => i.my);
+  const scoreCollector = getObjectsByPrototype(ScoreCollector)[0];
   if (scoreTestCreep && scoreCollector) {
     const scoreStored = scoreTestCreep.store[RESOURCE_SCORE];
     scoreTestCreep.transfer(scoreCollector, RESOURCE_SCORE);
@@ -121,9 +118,9 @@ export function loop(): void {
   }
 
   // $ExpectType AreaEffect[]
-  const areaEffects = utils.getObjectsByPrototype(AreaEffect);
-  const freezeEffects = areaEffects.filter((x) => x.effect === EFFECT_FREEZE);
-  const damageEffects = areaEffects.filter((x) => x.effect === EFFECT_DAMAGE);
+  const areaEffects = getObjectsByPrototype(AreaEffect);
+  const freezeEffects = areaEffects.filter(x => x.effect === EFFECT_FREEZE);
+  const damageEffects = areaEffects.filter(x => x.effect === EFFECT_DAMAGE);
 
   // build a rampart
   createConstructionSite(10, 10, StructureRampart);
