@@ -3,30 +3,39 @@ import {
   OwnedStructure,
   Structure,
   StructureRampart,
-  StructureTower
+  StructureTower,
 } from "game/prototypes";
 import { Flag, RESOURCE_SCORE, ScoreCollector, AreaEffect } from "arena";
 import { constants, pathFinder, prototypes, utils } from "game";
 import {
   createConstructionSite,
   getObjectsByPrototype,
-  getTicks,
+  // getTicks,
+  // getTime,
   findInRange,
   findPath,
-  findClosestByPath
+  findClosestByPath,
 } from "game/utils";
 import { CostMatrix } from "game/path-finder";
 import { RESOURCE_ENERGY } from "game/constants";
-import { EFFECT_DAMAGE, EFFECT_FREEZE, RESOURCE_SCORE_X, RESOURCE_SCORE_Y, RESOURCE_SCORE_Z } from "arena/constants";
+import {
+  EFFECT_DAMAGE,
+  EFFECT_FREEZE,
+  RESOURCE_SCORE_X,
+  RESOURCE_SCORE_Y,
+  RESOURCE_SCORE_Z,
+} from "arena/constants";
+
+// console.log(`The time is ${getTicks()}`);
 
 export function loop(): void {
-  // console.log(`The time is ${getTicks()}`);
+  // console.log(`The time is ${getTime()}`);
 
   const attack = constants.ATTACK;
 
   const costMatrix = new CostMatrix();
 
-  const noUtilsCreeps = getObjectsByPrototype(Creep).filter(i => i.my);
+  const noUtilsCreeps = getObjectsByPrototype(Creep).filter((i) => i.my);
 
   // $ExpectType StructureContainer[]
   const containers = utils.getObjectsByPrototype(prototypes.StructureContainer);
@@ -37,13 +46,13 @@ export function loop(): void {
   // $ExpectType Creep[]
   const myCreeps = utils
     .getObjectsByPrototype(prototypes.Creep)
-    .filter(i => i.my);
+    .filter((i) => i.my);
 
   // $ExpectType Creep[]
   const enemyCreeps = utils
     .getObjectsByPrototype(prototypes.Creep)
-    .filter(i => !i.my);
-  const enemyFlag = utils.getObjectsByPrototype(Flag).find(i => !i.my); // $ExpectType Flag | undefined
+    .filter((i) => !i.my);
+  const enemyFlag = utils.getObjectsByPrototype(Flag).find((i) => !i.my); // $ExpectType Flag | undefined
 
   const structures = utils.getObjectsByPrototype(Structure); //// $ExpectType Structure[]
   const ownedStructures = utils.getObjectsByPrototype(OwnedStructure); //// $ExpectType OwnedStructure[]
@@ -59,14 +68,14 @@ export function loop(): void {
   // TODO: creep actions
 
   // verification of Store object
-  const myTower = utils.getObjectsByPrototype(StructureTower).find(i => i.my);
+  const myTower = utils.getObjectsByPrototype(StructureTower).find((i) => i.my);
   if (myTower) {
     const energyStored = myTower.store[RESOURCE_ENERGY];
     const maxCapacity = myTower.store.getCapacity(RESOURCE_ENERGY);
 
     // $ExpectType Creep | null
     const findClosestByRange = myTower.findClosestByRange(
-      getObjectsByPrototype(Creep).filter(i => !i.my)
+      getObjectsByPrototype(Creep).filter((i) => !i.my)
     );
 
     const findInRangeResult = myTower.findInRange(enemyCreeps, 1); // $ExpectType Creep[]
@@ -97,7 +106,7 @@ export function loop(): void {
   }
 
   // verification of arena score
-  const scoreTestCreep = utils.getObjectsByPrototype(Creep).find(i => i.my);
+  const scoreTestCreep = utils.getObjectsByPrototype(Creep).find((i) => i.my);
   const scoreCollector = utils.getObjectsByPrototype(ScoreCollector)[0];
   if (scoreTestCreep && scoreCollector) {
     const scoreStored = scoreTestCreep.store[RESOURCE_SCORE];
@@ -113,8 +122,8 @@ export function loop(): void {
 
   // $ExpectType AreaEffect[]
   const areaEffects = utils.getObjectsByPrototype(AreaEffect);
-  const freezeEffects = areaEffects.filter(x => x.effect === EFFECT_FREEZE);
-  const damageEffects = areaEffects.filter(x => x.effect === EFFECT_DAMAGE);
+  const freezeEffects = areaEffects.filter((x) => x.effect === EFFECT_FREEZE);
+  const damageEffects = areaEffects.filter((x) => x.effect === EFFECT_DAMAGE);
 
   // build a rampart
   createConstructionSite(10, 10, StructureRampart);

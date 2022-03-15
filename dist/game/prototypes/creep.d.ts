@@ -51,7 +51,7 @@ declare module "game/prototypes" {
     /**
      * Move the creep one square in the specified direction. direction must be one of the following constants:
      */
-    move(direction: DirectionConstant): CreepMoveReturnCode | undefined;
+    move(direction: DirectionConstant): CreepMoveReturnCode;
     /**
      * Find the optimal path to the target within the same room and move to it.
      * A shorthand to consequent calls of findPathTo() and move() methods.
