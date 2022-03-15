@@ -24,7 +24,7 @@ Updating types
 
 ## Future Installation
 
-The type definitions are not yet published on [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped). ~~To install them, run the following.~~
+The type definitions are published on [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped). To install them, run the following.
 
 ```bash
 # npm

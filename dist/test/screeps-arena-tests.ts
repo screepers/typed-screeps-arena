@@ -3,14 +3,15 @@ import {
   OwnedStructure,
   Structure,
   StructureRampart,
-  StructureTower
+  StructureTower,
 } from "game/prototypes";
 import { Flag, RESOURCE_SCORE, ScoreCollector, AreaEffect } from "arena";
 import { constants, pathFinder, prototypes } from "game";
 import {
   createConstructionSite,
   getObjectsByPrototype,
-  getTicks,
+  // getTicks,
+  // getTime,
   findInRange,
   findPath,
   findClosestByPath,
@@ -27,13 +28,13 @@ import {
 } from "arena/constants";
 
 export function loop(): void {
-  // console.log(`The time is ${getTicks()}`);
+  // console.log(`The time is ${getTime()}`);
 
   const attack = constants.ATTACK;
 
   const costMatrix = new CostMatrix();
 
-  const noUtilsCreeps = getObjectsByPrototype(Creep).filter(i => i.my);
+  const noUtilsCreeps = getObjectsByPrototype(Creep).filter((i) => i.my);
 
   // $ExpectType StructureContainer[]
   const containers = getObjectsByPrototype(prototypes.StructureContainer);
@@ -71,7 +72,7 @@ export function loop(): void {
 
     // $ExpectType Creep | null
     const findClosestByRange = myTower.findClosestByRange(
-      getObjectsByPrototype(Creep).filter(i => !i.my)
+      getObjectsByPrototype(Creep).filter((i) => !i.my)
     );
 
     const findInRangeResult = myTower.findInRange(enemyCreeps, 1); // $ExpectType Creep[]
