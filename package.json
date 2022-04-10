@@ -6,7 +6,7 @@
   "types": "./dist/**/*.d.ts",
   "files": [
     "dist/**/*.d.ts",
-	"index.d.ts"
+    "index.d.ts"
   ],
   "scripts": {
     "compile:dtslint": "node ./build/concat.js && node ./build/prependHeader.js",
