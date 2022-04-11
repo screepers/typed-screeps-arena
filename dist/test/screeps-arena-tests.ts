@@ -123,10 +123,14 @@ export function loop(): void {
   const damageEffects = areaEffects.filter(x => x.effect === EFFECT_DAMAGE);
 
   // build a rampart
-  createConstructionSite(10, 10, StructureRampart);
-  createConstructionSite(10, 10, prototypes.StructureRampart);
+  const rampart1 = createConstructionSite(10, 10, StructureRampart);
+  const rampart2 = createConstructionSite(10, 10, prototypes.StructureRampart);
+  rampart2.object?.structure; // $ExpectType StructureRampart | undefined
   // TODO: verify all buildable structure types
-  // TODO: cSites .structure property.
+
+  const tower = createConstructionSite(10, 10, StructureTower);
+  tower.object?.structure; // $ExpectType StructureTower | undefined
+  tower.object?.structure.attack(enemyCreeps[0]);
 
   // overload of createConstructionSite
   createConstructionSite({ x: 10, y: 10 }, StructureRampart);

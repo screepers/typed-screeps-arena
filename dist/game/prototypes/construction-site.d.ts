@@ -1,7 +1,7 @@
 declare module "game/prototypes" {
-  import { ERR_NOT_OWNER, OK, STRUCTURE_PROTOTYPES } from "game/constants";
-  export interface ConstructionSite extends GameObject {
-    readonly prototype: ConstructionSite;
+  import { BuildableStructure, ERR_NOT_OWNER, OK, STRUCTURE_PROTOTYPES } from "game/constants";
+  export interface ConstructionSite<T extends BuildableStructure = BuildableStructure> extends GameObject {
+    readonly prototype: ConstructionSite<T>;
 
     /**
      * The current construction progress.
@@ -17,8 +17,11 @@ declare module "game/prototypes" {
      */
     structurePrototypeName: string;
 
-    // TODO: ConstructionSite object now has a new property structure that links to the corresponding Structure object.
-    // It will be the live object instance that will appear when the construction site is completed. You can check what structure is being constructed using the instanceof operator:
+    /**
+     * The structure that was built (when the construction site is completed)
+     * You can check what structure is being constructed using the instanceof operator:
+     */
+    structure: T;
 
     /**
      * Whether it is your construction site.

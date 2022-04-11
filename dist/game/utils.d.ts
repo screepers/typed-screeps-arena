@@ -112,12 +112,12 @@ declare module "game/utils" {
    * @param structurePrototype One of the following constants: StuctureExtension, StructureTower
    * @returns Result Code: OK, ERR_INVALID_TARGET, ERR_INVALID_ARGS, ERR_RCL_NOT_ENOUGH
    */
-  export function createConstructionSite(
+  export function createConstructionSite<T extends BuildableStructure >(
     x: number,
     y: number,
-    structureType: _Constructor<BuildableStructure>
+    structureType: _Constructor<T>
   ): {
-    object?: ConstructionSite;
+    object?: ConstructionSite<T>;
     error?: ERR_INVALID_ARGS | ERR_INVALID_TARGET | ERR_FULL;
   };
 
