@@ -15,7 +15,7 @@ import {
   findInRange,
   findPath,
   findClosestByPath,
-  getObjectById
+  getObjectById,
 } from "game/utils";
 import { CostMatrix } from "game/path-finder";
 import { RESOURCE_ENERGY } from "game/constants";
@@ -24,8 +24,9 @@ import {
   EFFECT_FREEZE,
   RESOURCE_SCORE_X,
   RESOURCE_SCORE_Y,
-  RESOURCE_SCORE_Z
+  RESOURCE_SCORE_Z,
 } from "arena/constants";
+import { Visual } from "game/visual";
 
 export function loop(): void {
   // console.log(`The time is ${getTime()}`);
@@ -43,13 +44,13 @@ export function loop(): void {
   const extensions = getObjectsByPrototype(prototypes.StructureContainer);
 
   // $ExpectType Creep[]
-  const myCreeps = getObjectsByPrototype(prototypes.Creep).filter(i => i.my);
+  const myCreeps = getObjectsByPrototype(prototypes.Creep).filter((i) => i.my);
 
   // $ExpectType Creep[]
   const enemyCreeps = getObjectsByPrototype(prototypes.Creep).filter(
-    i => !i.my
+    (i) => !i.my
   );
-  const enemyFlag = getObjectsByPrototype(Flag).find(i => !i.my); // $ExpectType Flag | undefined
+  const enemyFlag = getObjectsByPrototype(Flag).find((i) => !i.my); // $ExpectType Flag | undefined
 
   const structures = getObjectsByPrototype(Structure); //// $ExpectType Structure[]
   const ownedStructures = getObjectsByPrototype(OwnedStructure); //// $ExpectType OwnedStructure[]
@@ -65,7 +66,7 @@ export function loop(): void {
   // TODO: creep actions
 
   // verification of Store object
-  const myTower = getObjectsByPrototype(StructureTower).find(i => i.my);
+  const myTower = getObjectsByPrototype(StructureTower).find((i) => i.my);
   if (myTower) {
     const energyStored = myTower.store[RESOURCE_ENERGY];
     const maxCapacity = myTower.store.getCapacity(RESOURCE_ENERGY);
@@ -103,7 +104,7 @@ export function loop(): void {
   }
 
   // verification of arena score
-  const scoreTestCreep = getObjectsByPrototype(Creep).find(i => i.my);
+  const scoreTestCreep = getObjectsByPrototype(Creep).find((i) => i.my);
   const scoreCollector = getObjectsByPrototype(ScoreCollector)[0];
   if (scoreTestCreep && scoreCollector) {
     const scoreStored = scoreTestCreep.store[RESOURCE_SCORE];
@@ -119,8 +120,8 @@ export function loop(): void {
 
   // $ExpectType AreaEffect[]
   const areaEffects = getObjectsByPrototype(AreaEffect);
-  const freezeEffects = areaEffects.filter(x => x.effect === EFFECT_FREEZE);
-  const damageEffects = areaEffects.filter(x => x.effect === EFFECT_DAMAGE);
+  const freezeEffects = areaEffects.filter((x) => x.effect === EFFECT_FREEZE);
+  const damageEffects = areaEffects.filter((x) => x.effect === EFFECT_DAMAGE);
 
   // build a rampart
   const rampart1 = createConstructionSite(10, 10, StructureRampart);
@@ -139,4 +140,17 @@ export function loop(): void {
   }
 
   // TODO: test utils findXXX methods, theese methods are used by other metods.
+
+  // Visuals
+  const layer10Persistant = new Visual(10, true);
+  layer10Persistant.clear().text(
+    "100",
+    { x: 25, y: 25 - 0.5 }, // above the creep
+    {
+      font: "0.5",
+      opacity: 0.7,
+      backgroundColor: "#808080",
+      backgroundPadding: 0.03,
+    }
+  );
 }
