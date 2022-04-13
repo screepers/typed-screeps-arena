@@ -21,7 +21,7 @@ declare module "game/prototypes" {
     /**
      * If defined, then this object will disappear after this number of ticks.
      */
-    ticksToDecay?: number
+    ticksToDecay?: number;
 
     /**
      * Get linear range to another position. pos may be any object containing x and y properties.
