@@ -19,6 +19,11 @@ declare module "game/prototypes" {
     exists: boolean;
 
     /**
+     * If defined, then this object will disappear after this number of ticks.
+     */
+    ticksToDecay?: number
+
+    /**
      * Get linear range to another position. pos may be any object containing x and y properties.
      */
     getRangeTo(pos: RoomPosition): number;
