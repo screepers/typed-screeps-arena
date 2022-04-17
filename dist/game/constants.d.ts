@@ -15,7 +15,7 @@ declare module "game/constants" {
     StructureRoad,
     StructureSpawn,
     StructureTower,
-    StructureWall
+    StructureWall,
   } from "game/prototypes";
   export type BodyPartConstant =
     | MOVE

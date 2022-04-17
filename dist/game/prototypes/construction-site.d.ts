@@ -1,6 +1,13 @@
 declare module "game/prototypes" {
-  import { BuildableStructure, ERR_NOT_OWNER, OK, STRUCTURE_PROTOTYPES } from "game/constants";
-  export interface ConstructionSite<T extends BuildableStructure = BuildableStructure> extends GameObject {
+  import {
+    BuildableStructure,
+    ERR_NOT_OWNER,
+    OK,
+    STRUCTURE_PROTOTYPES,
+  } from "game/constants";
+  export interface ConstructionSite<
+    T extends BuildableStructure = BuildableStructure
+  > extends GameObject {
     readonly prototype: ConstructionSite<T>;
 
     /**

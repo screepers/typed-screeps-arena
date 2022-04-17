@@ -13,7 +13,8 @@ declare module "game/prototypes" {
     hits: number;
     hitsMax: number;
   }
-  export interface Structure<T extends StructureConstant = StructureConstant> extends GameObject {
+  export interface Structure<T extends StructureConstant = StructureConstant>
+    extends GameObject {
     readonly prototype: Structure;
 
     /**

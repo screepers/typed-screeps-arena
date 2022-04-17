@@ -5,6 +5,8 @@ declare module "game/prototypes" {
     readonly prototype: StructureRoad;
   }
 
-  interface StructureRoadConstructor extends _Constructor<StructureRoad>, _ConstructorById<StructureRoad> {}
+  interface StructureRoadConstructor
+    extends _Constructor<StructureRoad>,
+      _ConstructorById<StructureRoad> {}
   export const StructureRoad: StructureRoadConstructor;
 }

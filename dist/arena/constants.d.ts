@@ -7,7 +7,11 @@ declare module "arena/constants" {
   export type EFFECT_HEAL = "heal";
   export type EFFECT_DAMAGE = "damage";
 
-  export type ArenaResourceConstant = RESOURCE_SCORE | RESOURCE_SCORE_X | RESOURCE_SCORE_Y | RESOURCE_SCORE_Z;
+  export type ArenaResourceConstant =
+    | RESOURCE_SCORE
+    | RESOURCE_SCORE_X
+    | RESOURCE_SCORE_Y
+    | RESOURCE_SCORE_Z;
 
   export const RESOURCE_SCORE: RESOURCE_SCORE;
   export const RESOURCE_SCORE_X: RESOURCE_SCORE_X;

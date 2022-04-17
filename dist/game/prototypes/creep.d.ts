@@ -17,7 +17,7 @@ declare module "game/prototypes" {
     ERR_NO_PATH,
     OK,
     ResourceConstant,
-    ScreepsReturnCode
+    ScreepsReturnCode,
   } from "game/constants";
   import { MoveToOpts } from "game/path-finder";
   export interface Creep extends GameObject {

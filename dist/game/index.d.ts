@@ -5,7 +5,11 @@
 /// <reference path="visual.d.ts" />
 
 declare module "game" {
-  import { ERR_BUSY, ERR_INVALID_ARGS, ERR_NOT_ENOUGH_ENERGY } from "game/constants";
+  import {
+    ERR_BUSY,
+    ERR_INVALID_ARGS,
+    ERR_NOT_ENOUGH_ENERGY,
+  } from "game/constants";
   import { Structure } from "game/prototypes";
 
   export * from "game/utils";
@@ -45,6 +49,12 @@ declare module "game" {
     cpuTimeLimitFirstTick: number;
   };
 
-  export function createConstructionSite(x: number, y: number, structurePrototype: string /*STRUCTURE_PROTOTYPES*/):
-  { object?: Structure; error?: ERR_BUSY | ERR_INVALID_ARGS | ERR_NOT_ENOUGH_ENERGY };
+  export function createConstructionSite(
+    x: number,
+    y: number,
+    structurePrototype: string /*STRUCTURE_PROTOTYPES*/
+  ): {
+    object?: Structure;
+    error?: ERR_BUSY | ERR_INVALID_ARGS | ERR_NOT_ENOUGH_ENERGY;
+  };
 }
