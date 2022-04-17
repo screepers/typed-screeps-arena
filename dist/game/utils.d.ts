@@ -7,14 +7,14 @@ declare module "game/utils" {
     ERR_INVALID_ARGS,
     ERR_INVALID_TARGET,
     TERRAIN_SWAMP,
-    TERRAIN_WALL
+    TERRAIN_WALL,
   } from "game/constants";
   import {
     ConstructionSite,
     GameObject,
     Id,
     RoomPosition,
-    _Constructor
+    _Constructor,
   } from "game/prototypes";
   import { FindPathOpts, PathStep } from "game/path-finder";
 
@@ -112,7 +112,7 @@ declare module "game/utils" {
    * @param structurePrototype One of the following constants: StuctureExtension, StructureTower
    * @returns Result Code: OK, ERR_INVALID_TARGET, ERR_INVALID_ARGS, ERR_RCL_NOT_ENOUGH
    */
-  export function createConstructionSite<T extends BuildableStructure >(
+  export function createConstructionSite<T extends BuildableStructure>(
     x: number,
     y: number,
     structureType: _Constructor<T>
@@ -137,7 +137,7 @@ declare module "game/utils" {
   /**
    * Get CPU wall time elapsed in the current tick in nanoseconds.
    */
-   export function getCpuTime(): number;
+  export function getCpuTime(): number;
 
   export interface HeapStatistics {
     total_heap_size: number;

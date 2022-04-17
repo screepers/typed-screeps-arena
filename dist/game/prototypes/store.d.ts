@@ -24,7 +24,8 @@ declare module "game/prototypes" {
     getFreeCapacity(resource?: ResourceConstant): number | null;
   }
 
-  export type Store<POSSIBLE_RESOURCES extends ResourceConstant> = StoreBase<POSSIBLE_RESOURCES> &
-    { [P in POSSIBLE_RESOURCES]: number } &
-    { [P in Exclude<ResourceConstant, POSSIBLE_RESOURCES>]: 0 };
+  export type Store<POSSIBLE_RESOURCES extends ResourceConstant> =
+    StoreBase<POSSIBLE_RESOURCES> & { [P in POSSIBLE_RESOURCES]: number } & {
+      [P in Exclude<ResourceConstant, POSSIBLE_RESOURCES>]: 0;
+    };
 }

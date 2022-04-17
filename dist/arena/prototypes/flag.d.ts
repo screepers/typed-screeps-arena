@@ -9,6 +9,8 @@ declare module "arena/prototypes" {
     my: boolean | undefined;
   }
 
-  interface FlagConstructor extends _Constructor<Flag>, _ConstructorById<Flag> {}
+  interface FlagConstructor
+    extends _Constructor<Flag>,
+      _ConstructorById<Flag> {}
   export const Flag: FlagConstructor;
 }

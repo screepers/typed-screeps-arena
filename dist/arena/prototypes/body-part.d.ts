@@ -13,6 +13,8 @@ declare module "arena/prototypes" {
      */
     ticksToDecay: number;
   }
-  interface BodyPartConstructor extends _Constructor<BodyPart>, _ConstructorById<BodyPart> {}
+  interface BodyPartConstructor
+    extends _Constructor<BodyPart>,
+      _ConstructorById<BodyPart> {}
   export const BodyPart: BodyPartConstructor;
 }

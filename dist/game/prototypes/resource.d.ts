@@ -1,5 +1,5 @@
 declare module "game/prototypes" {
-  import type { ResourceConstant } from 'game/constants';
+  import type { ResourceConstant } from "game/constants";
   export interface Resource extends GameObject {
     readonly prototype: Resource;
     amount: number;
