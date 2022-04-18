@@ -111,6 +111,7 @@ declare module "game/utils" {
    * @param y The Y position.
    * @param structurePrototype One of the following constants: StuctureExtension, StructureTower
    * @returns Result Code: OK, ERR_INVALID_TARGET, ERR_INVALID_ARGS, ERR_RCL_NOT_ENOUGH
+   * @deprecated use the overload with a RoomPosition object
    */
   export function createConstructionSite<T extends BuildableStructure>(
     x: number,
