@@ -56,4 +56,10 @@ declare module "game/prototypes" {
 
     toJSON(): RoomObjectJSON;
   }
+
+  interface GameObjectConstructor
+    extends _Constructor<GameObject>,
+    _ConstructorById<GameObject> { }
+
+  export const GameObject: GameObjectConstructor;
 }
