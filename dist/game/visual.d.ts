@@ -93,6 +93,10 @@ declare module "game/visual" {
      * Remove all visuals from the object.
      */
     clear(): Visual;
+    /**
+     * Get the stored size of all visuals stored in the object.
+     */
+    size(): number;
   }
 
   interface VisualConstructor extends _Constructor<Visual> {
