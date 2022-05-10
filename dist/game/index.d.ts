@@ -12,7 +12,7 @@ declare module "game" {
   } from "game/constants";
   import { Structure } from "game/prototypes";
 
-  export * from "game/utils";
+  export * as utils from "game/utils";
 
   export * as pathFinder from "game/path-finder";
 
