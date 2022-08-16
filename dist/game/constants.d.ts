@@ -16,7 +16,7 @@ declare module "game/constants" {
     StructureTower,
     StructureWall
   } from "game/prototypes";
-  export type BodyPartConstant = MOVE | WORK | CARRY | ATTACK | RANGED_ATTACK | TOUGH | HEAL | CLAIM;
+  export type BodyPartConstant = MOVE | WORK | CARRY | ATTACK | RANGED_ATTACK | TOUGH | HEAL;
 
   export type MOVE = "move";
   export type WORK = "work";
@@ -25,7 +25,6 @@ declare module "game/constants" {
   export type RANGED_ATTACK = "ranged_attack";
   export type TOUGH = "tough";
   export type HEAL = "heal";
-  export type CLAIM = "claim";
 
   export const MOVE: MOVE;
   export const WORK: WORK;
@@ -34,7 +33,6 @@ declare module "game/constants" {
   export const RANGED_ATTACK: RANGED_ATTACK;
   export const TOUGH: TOUGH;
   export const HEAL: HEAL;
-  export const CLAIM: CLAIM;
 
   export type DirectionConstant = TOP | TOP_RIGHT | RIGHT | BOTTOM_RIGHT | BOTTOM | BOTTOM_LEFT | LEFT | TOP_LEFT;
 
