@@ -1,5 +1,9 @@
 declare module "game/prototypes" {
-  import { AnyCreep, ResourceConstant, ScreepsReturnCode } from "game/constants";
+  import {
+    AnyCreep,
+    ResourceConstant,
+    ScreepsReturnCode,
+  } from "game/constants";
   import { Store } from "game/prototypes";
   export type STRUCTURE_TOWER = "tower";
   // export const STRUCTURE_TOWER: STRUCTURE_TOWER;
@@ -47,7 +51,9 @@ declare module "game/prototypes" {
     // // repair(target: Structure): ScreepsReturnCode;
   }
 
-  interface StructureTowerConstructor extends _Constructor<StructureTower>, _ConstructorById<StructureTower> {}
+  interface StructureTowerConstructor
+    extends _Constructor<StructureTower>,
+      _ConstructorById<StructureTower> {}
 
   export const StructureTower: StructureTowerConstructor;
 }

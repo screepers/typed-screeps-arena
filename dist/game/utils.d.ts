@@ -7,21 +7,21 @@ declare module "game/utils" {
     ERR_INVALID_ARGS,
     ERR_INVALID_TARGET,
     TERRAIN_SWAMP,
-    TERRAIN_WALL
+    TERRAIN_WALL,
   } from "game/constants";
   import {
     ConstructionSite,
     GameObject,
     Id,
     RoomPosition,
-    _Constructor
+    _Constructor,
   } from "game/prototypes";
   import { FindPathOpts, PathStep } from "game/path-finder";
 
   /**
    * Get count of game ticks passed since the start of the game
    */
-  export function getTime(): number;
+  export function getTicks(): number;
   /**
    * Get an object with the specified unique ID.
    */
@@ -111,15 +111,34 @@ declare module "game/utils" {
    * @param y The Y position.
    * @param structurePrototype One of the following constants: StuctureExtension, StructureTower
    * @returns Result Code: OK, ERR_INVALID_TARGET, ERR_INVALID_ARGS, ERR_RCL_NOT_ENOUGH
+   * @deprecated use the overload with a RoomPosition object
    */
-  export function createConstructionSite(
+  export function createConstructionSite<T extends BuildableStructure>(
     x: number,
     y: number,
+    structureType: _Constructor<T>
+  ): {
+    object?: ConstructionSite<T>;
+    error?: ERR_INVALID_ARGS | ERR_INVALID_TARGET | ERR_FULL;
+  };
+
+  /**
+   * Create new ConstructionSite at the specified location.
+   * @param pos The X,Y position.
+   * @param structurePrototype One of the following constants: StuctureExtension, StructureTower
+   * @returns Result Code: OK, ERR_INVALID_TARGET, ERR_INVALID_ARGS, ERR_RCL_NOT_ENOUGH
+   */
+  export function createConstructionSite(
+    pos: RoomPosition,
     structureType: _Constructor<BuildableStructure>
   ): {
     object?: ConstructionSite;
     error?: ERR_INVALID_ARGS | ERR_INVALID_TARGET | ERR_FULL;
   };
+  /**
+   * Get CPU wall time elapsed in the current tick in nanoseconds.
+   */
+  export function getCpuTime(): number;
 
   export interface HeapStatistics {
     total_heap_size: number;

@@ -5,7 +5,9 @@ declare module "game/prototypes" {
   /**
    * The base prototype for a structure that has an owner.
    */
-  export interface OwnedStructure<T extends StructureConstant = StructureConstant> extends Structure<T> {
+  export interface OwnedStructure<
+    T extends StructureConstant = StructureConstant
+  > extends Structure<T> {
     readonly prototype: OwnedStructure;
 
     /**

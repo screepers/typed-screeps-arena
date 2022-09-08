@@ -19,6 +19,11 @@ declare module "game/prototypes" {
     exists: boolean;
 
     /**
+     * If defined, then this object will disappear after this number of ticks.
+     */
+    ticksToDecay?: number;
+
+    /**
      * Get linear range to another position. pos may be any object containing x and y properties.
      */
     getRangeTo(pos: RoomPosition): number;
@@ -36,7 +41,7 @@ declare module "game/prototypes" {
     /**
      * Find a position with the shortest linear distance from the given position, or null otherwise.
      */
-    findClosestByRange<T extends RoomPosition>(positions: T[]): T;
+    findClosestByRange<T extends RoomPosition>(positions: T[]): T | null;
 
     /**
      * Find a position with the shortest path from the given position, or null otherwise.
@@ -47,8 +52,14 @@ declare module "game/prototypes" {
     findClosestByPath<T extends RoomPosition>(
       positions: T[],
       opts?: FindPathOpts
-    ): T;
+    ): T | null;
 
     toJSON(): RoomObjectJSON;
   }
+
+  interface GameObjectConstructor
+    extends _Constructor<GameObject>,
+    _ConstructorById<GameObject> { }
+
+  export const GameObject: GameObjectConstructor;
 }

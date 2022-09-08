@@ -1,8 +1,9 @@
 declare module "game/prototypes" {
+  import type { ResourceConstant } from "game/constants";
   export interface Resource extends GameObject {
     readonly prototype: Resource;
     amount: number;
-    resourceType: "energy"; // TODO: fix
+    resourceType: ResourceConstant;
     // TODO: fix toJSON
     // toJSON() {
     //   return Object.assign(super.toJSON(), {

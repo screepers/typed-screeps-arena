@@ -1,5 +1,6 @@
 declare module "game/constants" {
-  import {
+  import type { ArenaResourceConstant } from "arena";
+  import type {
     Creep,
     STRUCTURE_CONTAINER,
     STRUCTURE_EXTENSION,
@@ -14,8 +15,9 @@ declare module "game/constants" {
     StructureRoad,
     StructureSpawn,
     StructureTower,
-    StructureWall
+    StructureWall,
   } from "game/prototypes";
+  
   export type BodyPartConstant = MOVE | WORK | CARRY | ATTACK | RANGED_ATTACK | TOUGH | HEAL;
 
   export type MOVE = "move";
@@ -34,7 +36,15 @@ declare module "game/constants" {
   export const TOUGH: TOUGH;
   export const HEAL: HEAL;
 
-  export type DirectionConstant = TOP | TOP_RIGHT | RIGHT | BOTTOM_RIGHT | BOTTOM | BOTTOM_LEFT | LEFT | TOP_LEFT;
+  export type DirectionConstant =
+    | TOP
+    | TOP_RIGHT
+    | RIGHT
+    | BOTTOM_RIGHT
+    | BOTTOM
+    | BOTTOM_LEFT
+    | LEFT
+    | TOP_LEFT;
 
   export type TOP = 1;
   export type TOP_RIGHT = 2;
@@ -70,9 +80,7 @@ declare module "game/constants" {
     | ERR_INVALID_ARGS
     | ERR_TIRED
     | ERR_NO_BODYPART
-    | ERR_NOT_ENOUGH_EXTENSIONS
-    | ERR_RCL_NOT_ENOUGH
-    | ERR_GCL_NOT_ENOUGH;
+    | ERR_NOT_ENOUGH_EXTENSIONS;
 
   export type OK = 0;
   export type ERR_NOT_OWNER = -1;
@@ -89,8 +97,6 @@ declare module "game/constants" {
   export type ERR_TIRED = -11;
   export type ERR_NO_BODYPART = -12;
   export type ERR_NOT_ENOUGH_EXTENSIONS = -6;
-  export type ERR_RCL_NOT_ENOUGH = -14;
-  export type ERR_GCL_NOT_ENOUGH = -15;
 
   export type CreepActionReturnCode =
     | OK
@@ -101,7 +107,12 @@ declare module "game/constants" {
     | ERR_NO_BODYPART
     | ERR_TIRED;
 
-  export type CreepMoveReturnCode = OK | ERR_NOT_OWNER | ERR_BUSY | ERR_TIRED | ERR_NO_BODYPART;
+  export type CreepMoveReturnCode =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_BUSY
+    | ERR_TIRED
+    | ERR_NO_BODYPART;
 
   export const CARRY_CAPACITY: number;
   export const CREEP_SPAWN_TIME: number;
@@ -157,9 +168,10 @@ declare module "game/constants" {
   export const TOWER_RANGE: number;
   export const TOWER_COOLDOWN: number;
 
-  export const RESOURCE_ENERGY: "energy";
+  export type RESOURCE_ENERGY = "energy";
+  export const RESOURCE_ENERGY: RESOURCE_ENERGY;
 
-  export type ResourceConstant = typeof RESOURCE_ENERGY;
+  export type ResourceConstant = RESOURCE_ENERGY | ArenaResourceConstant;
 
   export type AnyCreep = Creep; /* | PowerCreep;*/
 
