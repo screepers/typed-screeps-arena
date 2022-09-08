@@ -48,13 +48,4 @@ declare module "game" {
      */
     cpuTimeLimitFirstTick: number;
   };
-
-  export function createConstructionSite(
-    x: number,
-    y: number,
-    structurePrototype: string /*STRUCTURE_PROTOTYPES*/
-  ): {
-    object?: Structure;
-    error?: ERR_BUSY | ERR_INVALID_ARGS | ERR_NOT_ENOUGH_ENERGY;
-  };
 }
