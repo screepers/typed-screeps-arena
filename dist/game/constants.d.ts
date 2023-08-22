@@ -217,7 +217,7 @@ declare module "game/constants" {
     StructureContainer: number;
     StructureWall: number;
     StructureRampart: number;
-    StructureSpawnt: number;
+    StructureSpawn: number;
   };
 
   export type BuildableStructureConstant =
