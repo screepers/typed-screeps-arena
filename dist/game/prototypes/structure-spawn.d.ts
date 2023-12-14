@@ -6,7 +6,14 @@ declare module "game/prototypes" {
     ERR_NOT_ENOUGH_ENERGY,
     ResourceConstant,
   } from "game/constants";
-  import { Store } from "game/prototypes";
+  import { Creep, Store } from "game/prototypes";
+
+  export interface Spawning {
+    needTime: number;
+    remainingTime: number;
+    creep: Creep;
+  }
+
   export type STRUCTURE_SPAWN = "spawn";
   // export const STRUCTURE_SPAWN: STRUCTURE_SPAWN;
   export interface StructureSpawn extends OwnedStructure<STRUCTURE_SPAWN> {
@@ -22,6 +29,7 @@ declare module "game/prototypes" {
       object?: Creep;
       error?: ERR_BUSY | ERR_INVALID_ARGS | ERR_NOT_ENOUGH_ENERGY;
     };
+    spawning: Spawning | null;
   }
   interface StructureSpawnConstructor
     extends _Constructor<StructureSpawn>,
