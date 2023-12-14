@@ -49,6 +49,10 @@ declare module "game/prototypes" {
      */
     store: Store<ResourceConstant>;
     /**
+     * Whether it is spawning now.
+     */
+    spawning: boolean;
+    /**
      * Move the creep one square in the specified direction. direction must be one of the following constants:
      */
     move(direction: DirectionConstant): CreepMoveReturnCode;
