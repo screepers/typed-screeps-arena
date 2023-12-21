@@ -8,6 +8,7 @@ declare module "game/utils" {
     ERR_INVALID_TARGET,
     TERRAIN_SWAMP,
     TERRAIN_WALL,
+    TERRAIN_PLAIN,
   } from "game/constants";
   import {
     ConstructionSite,
@@ -69,12 +70,12 @@ declare module "game/utils" {
 
   /**
    * Get an integer representation of the terrain at the given position.
-   * Returns TERRAIN_WALL, TERRAIN_SWAMP, or 0.
+   * Returns TERRAIN_WALL, TERRAIN_SWAMP, or TERRAAIN_PLAIN.
    * @param pos pos should be an object containing x and y properties
    */
   export function getTerrainAt(
     pos: RoomPosition
-  ): TERRAIN_WALL | TERRAIN_SWAMP | 0;
+  ): TERRAIN_WALL | TERRAIN_SWAMP | TERRAIN_PLAIN;
 
   /**
    * Find all positions from the given positions array within the specified linear range.

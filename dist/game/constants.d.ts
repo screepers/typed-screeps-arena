@@ -161,9 +161,11 @@ declare module "game/constants" {
 
   export type TERRAIN_SWAMP = 2;
   export type TERRAIN_WALL = 1;
+  export type TERRAIN_PLAIN = 0;
 
   export const TERRAIN_SWAMP: TERRAIN_SWAMP;
   export const TERRAIN_WALL: TERRAIN_WALL;
+  export const TERRAIN_PLAIN: TERRAIN_PLAIN;
 
   export const TOWER_CAPACITY: number;
   export const TOWER_ENERGY_COST: number;
