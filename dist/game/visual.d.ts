@@ -112,7 +112,7 @@ declare module "game/visual" {
   export const Visual: VisualConstructor;
 }
 
-interface LineStyle {
+export interface LineStyle {
   /**
    * Line width, default is 0.1.
    */
@@ -131,7 +131,7 @@ interface LineStyle {
   lineStyle?: "dashed" | "dotted" | undefined;
 }
 
-interface PolyStyle {
+export interface PolyStyle {
   /**
    * Fill color in any web format, default is undefined (no fill).
    */
@@ -154,14 +154,14 @@ interface PolyStyle {
   lineStyle?: "dashed" | "dotted" | "solid" | undefined;
 }
 
-interface CircleStyle extends PolyStyle {
+export interface CircleStyle extends PolyStyle {
   /**
    * Circle radius, default is 0.15.
    */
   radius?: number;
 }
 
-interface TextStyle {
+export interface TextStyle {
   /**
    * Font color in any web format, default is #ffffff(white).
    */
