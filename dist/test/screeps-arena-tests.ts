@@ -10,12 +10,12 @@ import { constants, pathFinder, prototypes } from "game";
 import {
   createConstructionSite,
   getObjectsByPrototype,
-  // getTicks,
-  // getTime,
+  getTicks,
   findInRange,
   findPath,
   findClosestByPath,
   getObjectById,
+  getTerrainAt,
 } from "game/utils";
 import { CostMatrix } from "game/path-finder";
 import { RESOURCE_ENERGY } from "game/constants";
@@ -29,11 +29,28 @@ import {
 import { Visual } from "game/visual";
 
 export function loop(): void {
-  // console.log(`The time is ${getTime()}`);
+  const ticks = getTicks();
 
   const attack = constants.ATTACK;
+  const carry = constants.CARRY;
+  const move = constants.MOVE;
+  const work = constants.WORK;
+  const tough = constants.TOUGH;
+  const rangedAttack = constants.RANGED_ATTACK;
+  const heal = constants.HEAL;
 
   const costMatrix = new CostMatrix();
+
+  const terrain = getTerrainAt({ x: 0, y: 0 });
+
+  switch (terrain) {
+    case constants.TERRAIN_PLAIN:
+      break;
+    case constants.TERRAIN_WALL:
+      break;
+    case constants.TERRAIN_SWAMP:
+      break;
+  }
 
   const noUtilsCreeps = getObjectsByPrototype(Creep).filter((i) => i.my);
 

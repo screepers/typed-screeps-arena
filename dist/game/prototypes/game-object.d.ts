@@ -59,7 +59,7 @@ declare module "game/prototypes" {
 
   interface GameObjectConstructor
     extends _Constructor<GameObject>,
-    _ConstructorById<GameObject> { }
+      _ConstructorById<GameObject> {}
 
   export const GameObject: GameObjectConstructor;
 }

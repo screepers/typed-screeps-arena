@@ -11,11 +11,11 @@
   "scripts": {
     "compile:dtslint": "node ./build/concat.js && node ./build/prependHeader.js",
     "compile": "npm run compile:dtslint && node ./build/prependDescription.js",
-    "dtslint": "npm run compile:dtslint && dtslint dist",
-    "format": "prettier --write --ignore-unknown --ignore-path .gitignore '**/*'",
-    "lint": "tslint -p tsconfig.json 'src/**/*.ts'",
-    "lint:test": "tslint -p dist/tsconfig.json 'dist/screeps-arena-tests.ts'",
-    "pre-commit": "npm run compile && git add dist/index.d.ts",
+    "dtslint": "npm run compile:dtslint && dtslint ./dist/",
+    "format": "prettier --write --ignore-unknown --ignore-path .gitignore ./dist/**/*",
+    "lint": "tslint -p ./dist/tsconfig.json ./src/**/*.ts",
+    "lint:test": "tslint -p ./dist/tsconfig.json ./dist/test/screeps-arena-tests.ts",
+    "pre-commit": "npm run compile && git add ./dist/index.d.ts",
     "prepare": "npm test",
     "test": "npm run dtslint"
   },

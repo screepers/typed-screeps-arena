@@ -24,8 +24,7 @@ declare module "game/constants" {
     | ATTACK
     | RANGED_ATTACK
     | TOUGH
-    | HEAL
-    | CLAIM;
+    | HEAL;
 
   export type MOVE = "move";
   export type WORK = "work";
@@ -34,7 +33,6 @@ declare module "game/constants" {
   export type RANGED_ATTACK = "ranged_attack";
   export type TOUGH = "tough";
   export type HEAL = "heal";
-  export type CLAIM = "claim";
 
   export const MOVE: MOVE;
   export const WORK: WORK;
@@ -43,7 +41,6 @@ declare module "game/constants" {
   export const RANGED_ATTACK: RANGED_ATTACK;
   export const TOUGH: TOUGH;
   export const HEAL: HEAL;
-  export const CLAIM: CLAIM;
 
   export type DirectionConstant =
     | TOP
@@ -161,9 +158,11 @@ declare module "game/constants" {
 
   export type TERRAIN_SWAMP = 2;
   export type TERRAIN_WALL = 1;
+  export type TERRAIN_PLAIN = 0;
 
   export const TERRAIN_SWAMP: TERRAIN_SWAMP;
   export const TERRAIN_WALL: TERRAIN_WALL;
+  export const TERRAIN_PLAIN: TERRAIN_PLAIN;
 
   export const TOWER_CAPACITY: number;
   export const TOWER_ENERGY_COST: number;
@@ -194,7 +193,9 @@ declare module "game/constants" {
 
   export const REPAIR_COST: number;
   export const REPAIR_POWER: number;
-  // export const RESOURCES_ALL = ["energy"];
+
+  type ResourcesAll = [RESOURCE_ENERGY];
+  export const RESOURCES_ALL: ResourcesAll;
 
   export const RESOURCE_DECAY: number;
   export const SOURCE_ENERGY_REGEN: number;
