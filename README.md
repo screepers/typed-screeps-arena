@@ -3,7 +3,7 @@
 Typescript types for the game [Screeps Arena](https://store.steampowered.com/app/1137320/Screeps_Arena/) based on the official [Screeps Arena Docs](https://arena.screeps.com/docs/).
 
 > [!NOTE]
-> These types were created for **Season Beta**.
+> The types in this branch are for **Season Beta** in Screeps Arena.
 
 ### Installation
 
