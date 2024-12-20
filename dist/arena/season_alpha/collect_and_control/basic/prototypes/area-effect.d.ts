@@ -1,4 +1,4 @@
-declare module "arena/prototypes" {
+declare module "arena/season_alpha/collect_and_control/basic/prototypes" {
   import { GameObject, _Constructor } from "game/prototypes";
   export interface AreaEffect extends GameObject {
     /**

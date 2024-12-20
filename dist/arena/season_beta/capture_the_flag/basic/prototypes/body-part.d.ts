@@ -1,4 +1,4 @@
-declare module "arena/prototypes" {
+declare module "arena/season_beta/capture_the_flag/basic/prototypes" {
   import { GameObject, _Constructor, _ConstructorById } from "game/prototypes";
   import { BodyPartConstant } from "game/constants";
 
