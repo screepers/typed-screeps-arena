@@ -5,7 +5,6 @@ import {
   StructureRampart,
   StructureTower,
 } from "game/prototypes";
-import { Flag, RESOURCE_SCORE, ScoreCollector, AreaEffect } from "arena";
 import { constants, pathFinder, prototypes } from "game";
 import {
   createConstructionSite,
@@ -20,12 +19,22 @@ import {
 import { CostMatrix } from "game/path-finder";
 import { RESOURCE_ENERGY } from "game/constants";
 import {
+  Flag,
+} from "arena/season_beta/capture_the_flag/basic/prototypes";
+import {
+  ScoreCollector,
+  AreaEffect,
+} from "arena/season_beta/collect_and_control/basic/prototypes";
+import {
   EFFECT_DAMAGE,
   EFFECT_FREEZE,
+  RESOURCE_SCORE,
+} from "arena/season_beta/collect_and_control/basic/constants";
+import {
   RESOURCE_SCORE_X,
   RESOURCE_SCORE_Y,
   RESOURCE_SCORE_Z,
-} from "arena/constants";
+} from "arena/season_beta/collect_and_control/advanced/constants";
 import { Visual } from "game/visual";
 
 export function loop(): void {
