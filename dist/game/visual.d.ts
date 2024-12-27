@@ -1,5 +1,97 @@
 declare module "game/visual" {
-  import { RoomPosition, _Constructor } from "game/prototypes";
+  import { Position, _Constructor } from "game/prototypes";
+
+  export type LineStyle = "dashed" | "dotted";
+
+  export type TextAlign = "center" | "left" | "right";
+
+  export interface LineVisualStyle {
+    /**
+     * Line width, default is 0.1.
+     */
+    width?: number;
+    /**
+     * Line color in any web format, default is #ffffff(white).
+     */
+    color?: string;
+    /**
+     * Opacity value, default is 0.5.
+     */
+    opacity?: number;
+    /**
+     * Either undefined (solid line), dashed, or dotted.Default is undefined.
+     */
+    lineStyle?: LineStyle;
+  }
+
+  export interface PolyVisualStyle {
+    /**
+     * Fill color in any web format, default is undefined (no fill).
+     */
+    fill?: string;
+    /**
+     * Opacity value, default is 0.5.
+     */
+    opacity?: number;
+    /**
+     * Stroke color in any web format, default is #ffffff (white).
+     */
+    stroke?: string;
+    /**
+     * Stroke line width, default is 0.1.
+     */
+    strokeWidth?: number;
+    /**
+     * Either undefined (solid line), dashed, or dotted. Default is undefined.
+     */
+    lineStyle?: LineStyle;
+  }
+
+  export interface RectVisualStyle extends PolyVisualStyle {}
+
+  export interface CircleVisualStyle extends PolyVisualStyle {
+    /**
+     * Circle radius, default is 0.15.
+     */
+    radius?: number;
+  }
+
+  export interface TextVisualStyle {
+    /**
+     * Font color in any web format, default is #ffffff(white).
+     */
+    color?: string;
+    /**
+     * Either a number or a string in one of the following forms:
+     * "0.7" (relative size in game coordinates),
+     * "20px" (absolute size in pixels),
+     * "0.7 serif", or
+     * "bold italic 1.5 Times New Roman"
+     */
+    font?: number | string;
+    /**
+     * Stroke color in any web format, default is undefined (no stroke).
+     */
+    stroke?: string;
+    /**
+     * Stroke width, default is 0.15.
+     */
+    strokeWidth?: number;
+    /**
+     * Background color in any web format, default is undefined (no background).When background is enabled, text vertical align is set to middle (default is baseline).
+     */
+    backgroundColor?: string;
+
+    /**
+     * Background rectangle padding, default is 0.3.
+     */
+    backgroundPadding?: number;
+    align?: "center" | "left" | "right";
+    /**
+     * Opacity value, default is 1.0.
+     */
+    opacity?: number;
+  }
 
   /**
    * Visuals provide a way to show various visual debug info in the game.
@@ -19,16 +111,17 @@ declare module "game/visual" {
 
     /**
      * Draw a line.
-     * @param pos1 The start position object. May be GameObject or any object containing x and y properties.
-     * @param pos2 The finish position object. May be GameObject or any object containing x and y properties.
-     * @param style
-     * 	An object with the following properties:
-     * - width (number) Line width, default is 0.1.
-     * - color (string) Line color in the following format: #ffffff (hex triplet). Default is #ffffff.
-     * - opacity (number) Opacity value, default is 0.5.
-     * - lineStyle (string) Either undefined (solid line), dashed, or dotted. Default is undefined.
+     * @param pos1 The start position object. May be {@link GameObject} or any object containing x and y properties.
+     * @param pos2 The finish position object. May be {@link GameObject} or any object containing x and y properties.
+     * @param style An object with additional options
+     * @param style.width Line width, default is 0.1
+     * @param style.color Line color in the following format: #ffffff (hex triplet). Default is #ffffff
+     * @param style.opacity Opacity value, default is 0.5
+     * @param style.lineStyle Either undefined (solid line), dashed, or dotted. Default is undefined
+     * @returns the {@link Visual} object itself, so that you can chain calls.
      */
-    line(pos1: RoomPosition, pos2: RoomPosition, style?: LineStyle): Visual;
+    line(pos1: Position, pos2: Position, style?: LineVisualStyle): Visual;
+
     /**
      * Draw a circle.
      * @param pos The position object of the center. May be GameObject or any object containing x and y properties.
@@ -40,55 +133,53 @@ declare module "game/visual" {
      * - strokeWidth (number) Stroke line width, default is 0.1.
      * - lineStyle (string) Either undefined (solid line), dashed, or dotted. Default is undefined.
      */
-    circle(pos: RoomPosition, style?: CircleStyle): Visual;
+    circle(pos: Position, style?: CircleVisualStyle): Visual;
 
     /**
      * Draw a rectangle.
-     * @param topLeftPos The position object of the top-left corner. May be GameObject or any object containing x and y properties.
-     * @param width The width of the rectangle.
-     * @param height The height of the rectangle.
-     * @param style An object with the following properties:
-     * - radius (number) Circle radius, default is 0.15.
-     * - fill (string) Fill color in the following format: #ffffff (hex triplet). Default is #ffffff.
-     * - opacity (number) Opacity value, default is 0.5.
-     * - stroke (string) Stroke color in the following format: #ffffff (hex triplet). Default is #ffffff.
-     * - strokeWidth (number) Stroke line width, default is 0.1.
-     * - lineStyle (string) Either undefined (solid line), dashed, or dotted. Default is undefined.
+     * @param pos The position object of the top-left corner. May be {@link GameObject} or any object containing x and y properties.
+     * @param w The width of the rectangle.
+     * @param h The height of the rectangle.
+     * @param style An object with additional options
+     * @param style.fill Fill color in the following format: #ffffff (hex triplet). Default is #ffffff
+     * @param style.opacity Opacity value, default is 0.5
+     * @param style.stroke Stroke color in the following format: #ffffff (hex triplet). Default is #ffffff
+     * @param style.strokeWidth Stroke line width, default is 0.1
+     * @param style.lineStyle Either undefined (solid line), dashed, or dotted. Default is undefined
+     * @returns the {@link Visual} object itself, so that you can chain calls.
      */
-    rect(
-      topLeftPos: RoomPosition,
-      width: number,
-      height: number,
-      style?: PolyStyle
-    ): Visual;
+    rect(pos: Position, w: number, h: number, style?: RectVisualStyle): Visual;
+
     /**
      * Draw a polyline.
-     * @param points 	An array of points. Every item may be GameObject or any object containing x and y properties.
-     * @param style An object with the following properties:
-     * - fill (string) Fill color in the following format: #ffffff (hex triplet). Default is #ffffff.
-     * - opacity (number) Opacity value, default is 0.5.
-     * - stroke (string) Stroke color in the following format: #ffffff (hex triplet). Default is #ffffff.
-     * - strokeWidth (number) Stroke line width, default is 0.1.
-     * - lineStyle (string) Either undefined (solid line), dashed, or dotted. Default is undefined.
+     * @param points An array of points. Every item may be {@link GameObject} or any object containing x and y properties.
+     * @param style An object with additional options
+     * @param style.fill Fill color in the following format: #ffffff (hex triplet). Default is #ffffff
+     * @param style.opacity Opacity value, default is 0.5
+     * @param style.stroke Stroke color in the following format: #ffffff (hex triplet). Default is #ffffff
+     * @param style.strokeWidth Stroke line width, default is 0.1
+     * @param style.lineStyle Either undefined (solid line), dashed, or dotted. Default is undefined
+     * @returns the {@link Visual} object itself, so that you can chain calls.
      */
-    poly(points: RoomPosition[], style?: PolyStyle): Visual;
+    poly(points: Position[], style?: PolyVisualStyle): Visual;
+
     /**
      * Draw a text label. You can use any valid Unicode characters, including emoji.
      * @param text The text message.
-     * @param pos The position object of the label baseline. May be GameObject or any object containing x and y properties.
-     * @param style An object with the following properties:
-     * - color (string) Font color in the following format: #ffffff (hex triplet). Default is #ffffff.
-     * - font (number|string) Either a number or a string in one of the following forms: "0.7" (relative size in game coordinates)
-     * , "20px" (absolute size in pixels), "0.7 serif", or "bold italic 1.5 Times New Roman"
-     * - stroke (string) Stroke color in the following format: #ffffff (hex triplet). default is undefined (no stroke).
-     * - strokeWidth (number) Stroke line width, default is 0.15.
-     * - backgroundColor (string) Background color in the following format: #ffffff (hex triplet).
-     * Default is undefined (no background). When background is enabled, text vertical align is set to middle (default is baseline).
-     * - backgroundPadding (number) Background rectangle padding, default is 0.3.
-     * - aling (string) Text align, either center, left, or right. Default is center.
-     * - opacity (number) Opacity value, default is 1.
+     * @param pos The position object of the label baseline. May be {@link GameObject} or any object containing x and y properties.
+     * @param style An object with additional options
+     * @param style.align Text align, either center, left, or right. Default is center.
+     * @param style.backgroundColor Background color in the following format: #ffffff (hex triplet). Default is undefined (no background)
+     * @param style.backgroundPadding Background rectangle padding, default is 0.3
+     * @param style.color Font color in the following format: #ffffff (hex triplet). Default is #ffffff
+     * @param style.font Either a number or a string in one of the following forms: "0.7", "20px", "0.7 serif", or "bold italic 1.5 Times New Roman"
+     * @param style.opacity Opacity value, default is 1
+     * @param style.stroke Stroke color in the following format: #ffffff (hex triplet). default is undefined (no stroke)
+     * @param style.strokeWidth Stroke line width, default is 0.15
+     * @returns the {@link Visual} object itself, so that you can chain calls.
      */
-    text(text: string, pos: RoomPosition, style?: TextStyle): Visual;
+    text(text: string, pos: Position, style?: TextVisualStyle): Visual;
+
     /**
      * Remove all visuals from the object.
      */
@@ -110,90 +201,4 @@ declare module "game/visual" {
   }
 
   export const Visual: VisualConstructor;
-}
-
-interface LineStyle {
-  /**
-   * Line width, default is 0.1.
-   */
-  width?: number;
-  /**
-   * Line color in any web format, default is #ffffff(white).
-   */
-  color?: string;
-  /**
-   * Opacity value, default is 0.5.
-   */
-  opacity?: number;
-  /**
-   * Either undefined (solid line), dashed, or dotted.Default is undefined.
-   */
-  lineStyle?: "dashed" | "dotted" | undefined;
-}
-
-interface PolyStyle {
-  /**
-   * Fill color in any web format, default is undefined (no fill).
-   */
-  fill?: string | undefined;
-  /**
-   * Opacity value, default is 0.5.
-   */
-  opacity?: number;
-  /**
-   * Stroke color in any web format, default is #ffffff (white).
-   */
-  stroke?: string;
-  /**
-   * Stroke line width, default is 0.1.
-   */
-  strokeWidth?: number;
-  /**
-   * Either undefined (solid line), dashed, or dotted. Default is undefined.
-   */
-  lineStyle?: "dashed" | "dotted" | "solid" | undefined;
-}
-
-interface CircleStyle extends PolyStyle {
-  /**
-   * Circle radius, default is 0.15.
-   */
-  radius?: number;
-}
-
-interface TextStyle {
-  /**
-   * Font color in any web format, default is #ffffff(white).
-   */
-  color?: string;
-  /**
-   * Either a number or a string in one of the following forms:
-   * 0.7 - relative size in game coordinates
-   * 20px - absolute size in pixels
-   * 0.7 serif
-   * bold italic 1.5 Times New Roman
-   */
-  font?: number | string;
-  /**
-   * Stroke color in any web format, default is undefined (no stroke).
-   */
-  stroke?: string | undefined;
-  /**
-   * Stroke width, default is 0.15.
-   */
-  strokeWidth?: number;
-  /**
-   * Background color in any web format, default is undefined (no background).When background is enabled, text vertical align is set to middle (default is baseline).
-   */
-  backgroundColor?: string | undefined;
-
-  /**
-   * Background rectangle padding, default is 0.3.
-   */
-  backgroundPadding?: number;
-  align?: "center" | "left" | "right";
-  /**
-   * Opacity value, default is 1.0.
-   */
-  opacity?: number;
 }

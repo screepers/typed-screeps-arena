@@ -1,7 +1,8 @@
-import { ResourceConstant } from "game/constants";
-import { GameObject, _Constructor } from "game/prototypes";
-
 declare module "arena/season_beta/collect_and_control/basic/prototypes" {
+  import { ResourceConstant } from "game/constants";
+  import { GameObject, _Constructor } from "game/prototypes";
+
+  /** Key game object for this arena. Transfer the corresponding resource to the collector to win the game */
   export interface ScoreCollector extends GameObject {
     /**
      * The type of the resource this collector accepts.

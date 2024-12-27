@@ -9,6 +9,21 @@ declare module "game/prototypes" {
     ResourceConstant,
   } from "game/constants";
   import { Store } from "game/prototypes";
+
+  /**
+   * The result of the StructureSpawn.spawnCreep method.
+   */
+  export interface SpawnCreepResult {
+    /**
+     * The instance of the Creep being spawned
+     */
+    object?: Creep;
+    /**
+     * The error code
+     */
+    error?: ERR_NOT_OWNER | ERR_INVALID_ARGS | ERR_NOT_ENOUGH_ENERGY | ERR_BUSY;
+  }
+
   /**
    * Details of the creep being spawned currently that can be addressed by the StructureSpawn.spawning property.
    */
@@ -33,6 +48,7 @@ declare module "game/prototypes" {
 
   export type STRUCTURE_SPAWN = "spawn";
   // export const STRUCTURE_SPAWN: STRUCTURE_SPAWN;
+
   export interface StructureSpawn extends OwnedStructure<STRUCTURE_SPAWN> {
     /**
      * A Store object that contains a cargo of this structure. Spawns can contain only energy.
@@ -40,12 +56,10 @@ declare module "game/prototypes" {
     store: Store<ResourceConstant>;
     /**
      * Start the creep spawning process. The required energy amount can be withdrawn from all spawns and extensions in the room.
-     * @returns A creep on success or an errorcode on failure
+     * @param body An array describing the new creep's body
+     * @returns A creep on success or an error code on failure
      */
-    spawnCreep(body: BodyPartConstant[]): {
-      object?: Creep;
-      error?: ERR_BUSY | ERR_INVALID_ARGS | ERR_NOT_ENOUGH_ENERGY;
-    };
+    spawnCreep(body: BodyPartConstant[]): SpawnCreepResult;
     /**
      * If the spawn is in process of spawning a new creep, this object will contain a Spawning object, or undefined otherwise.
      * CAUION: The document says "or null", but actually it returns undefined when not spawning.

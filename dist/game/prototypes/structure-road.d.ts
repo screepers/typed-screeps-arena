@@ -1,6 +1,8 @@
 declare module "game/prototypes" {
   export type STRUCTURE_ROAD = "road";
   // export const STRUCTURE_ROAD: STRUCTURE_ROAD;
+
+  /** Decreases movement cost to 1. Using roads allows creating creeps with less MOVE body parts */
   export interface StructureRoad extends Structure<STRUCTURE_ROAD> {
     readonly prototype: StructureRoad;
   }
@@ -8,5 +10,6 @@ declare module "game/prototypes" {
   interface StructureRoadConstructor
     extends _Constructor<StructureRoad>,
       _ConstructorById<StructureRoad> {}
+
   export const StructureRoad: StructureRoadConstructor;
 }

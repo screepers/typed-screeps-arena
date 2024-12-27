@@ -64,6 +64,8 @@ declare module "game/constants" {
     | LEFT
     | TOP_LEFT;
 
+  export type TerrainConstant = TERRAIN_WALL | TERRAIN_SWAMP | TERRAIN_PLAIN;
+
   export type TOP = 1;
   export type TOP_RIGHT = 2;
   export type RIGHT = 3;
@@ -83,23 +85,6 @@ declare module "game/constants" {
   export const TOP_LEFT: TOP_LEFT;
 
   // Return Codes
-  export type ScreepsReturnCode =
-    | OK
-    | ERR_NOT_OWNER
-    | ERR_NO_PATH
-    | ERR_BUSY
-    | ERR_NAME_EXISTS
-    | ERR_NOT_FOUND
-    | ERR_NOT_ENOUGH_RESOURCES
-    | ERR_NOT_ENOUGH_ENERGY
-    | ERR_INVALID_TARGET
-    | ERR_FULL
-    | ERR_NOT_IN_RANGE
-    | ERR_INVALID_ARGS
-    | ERR_TIRED
-    | ERR_NO_BODYPART
-    | ERR_NOT_ENOUGH_EXTENSIONS;
-
   export type OK = 0;
   export type ERR_NOT_OWNER = -1;
   export type ERR_NO_PATH = -2;
@@ -115,25 +100,6 @@ declare module "game/constants" {
   export type ERR_TIRED = -11;
   export type ERR_NO_BODYPART = -12;
   export type ERR_NOT_ENOUGH_EXTENSIONS = -6;
-
-  export type CreepActionReturnCode =
-    | OK
-    | ERR_NOT_OWNER
-    | ERR_BUSY
-    | ERR_INVALID_TARGET
-    | ERR_NOT_IN_RANGE
-    | ERR_NO_BODYPART
-    | ERR_TIRED;
-
-  export type CreepMoveReturnCode =
-    | OK
-    | ERR_NOT_OWNER
-    | ERR_BUSY
-    | ERR_TIRED
-    | ERR_NO_BODYPART;
-
-  export const CARRY_CAPACITY: number;
-  export const CREEP_SPAWN_TIME: number;
 
   export const ERR_BUSY: ERR_BUSY;
   export const ERR_FULL: ERR_FULL;
@@ -151,13 +117,124 @@ declare module "game/constants" {
   export const ERR_TIRED: ERR_TIRED;
   export const OK: OK;
 
+  export type CreepAttackResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_NO_BODYPART
+    | ERR_INVALID_TARGET
+    | ERR_NOT_IN_RANGE;
+
+  export type CreepBuildResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_NO_BODYPART
+    | ERR_NOT_ENOUGH_RESOURCES
+    | ERR_INVALID_TARGET
+    | ERR_NOT_IN_RANGE;
+
+  export type CreepDropResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_INVALID_ARGS
+    | ERR_NOT_ENOUGH_RESOURCES;
+
+  export type CreepHarvestResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_NO_BODYPART
+    | ERR_INVALID_TARGET
+    | ERR_NOT_ENOUGH_RESOURCES
+    | ERR_NOT_IN_RANGE;
+
+  export type CreepHealResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_NO_BODYPART
+    | ERR_INVALID_TARGET
+    | ERR_NOT_IN_RANGE;
+
+  export type CreepMoveResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_NO_BODYPART
+    | ERR_TIRED
+    | ERR_INVALID_ARGS;
+
+  export type CreepPickupResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_INVALID_TARGET
+    | ERR_FULL
+    | ERR_NOT_IN_RANGE;
+
+  export type CreepPullResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_NO_BODYPART
+    | ERR_TIRED
+    | ERR_INVALID_TARGET
+    | ERR_NOT_IN_RANGE;
+
+  export type CreepRangedAttackResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_NO_BODYPART
+    | ERR_INVALID_TARGET
+    | ERR_NOT_IN_RANGE;
+
+  export type CreepRangedHealResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_NO_BODYPART
+    | ERR_INVALID_TARGET
+    | ERR_NOT_IN_RANGE;
+
+  export type CreepRangedMassAttackResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_NO_BODYPART;
+
+  export type CreepTransferResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_INVALID_ARGS
+    | ERR_INVALID_TARGET
+    | ERR_NOT_IN_RANGE
+    | ERR_FULL
+    | ERR_NOT_ENOUGH_RESOURCES;
+
+  export type CreepWithdrawResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_INVALID_ARGS
+    | ERR_INVALID_TARGET
+    | ERR_NOT_IN_RANGE
+    | ERR_FULL
+    | ERR_NOT_ENOUGH_RESOURCES;
+
+  export type TowerAttackResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_TIRED
+    | ERR_INVALID_TARGET
+    | ERR_NOT_ENOUGH_ENERGY;
+
+  export type TowerHealResult =
+    | OK
+    | ERR_NOT_OWNER
+    | ERR_TIRED
+    | ERR_INVALID_TARGET
+    | ERR_NOT_ENOUGH_ENERGY;
+
+  export const CARRY_CAPACITY: number;
+  export const CREEP_SPAWN_TIME: number;
+
   export type OBSTACLE_OBJECT_TYPES =
-    | AnyCreep
+    | Creep
     | STRUCTURE_TOWER
     | STRUCTURE_WALL
     | STRUCTURE_SPAWN
     | STRUCTURE_EXTENSION;
-  // | STRUCTURE_LINK
 
   export const OBSTACLE_OBJECT_TYPES: OBSTACLE_OBJECT_TYPES;
   export const RANGED_ATTACK_DISTANCE_RATE: any[];
@@ -192,8 +269,6 @@ declare module "game/constants" {
   export const RESOURCE_ENERGY: RESOURCE_ENERGY;
 
   export type ResourceConstant = RESOURCE_ENERGY | ArenaResourceConstant;
-
-  export type AnyCreep = Creep; /* | PowerCreep;*/
 
   export const BODYPART_COST: { [index in BodyPartConstant]: number };
   export const BODYPART_HITS: number;

@@ -4,6 +4,7 @@ declare module "game/prototypes" {
     new (): T;
     (): T;
   }
+
   export interface _ConstructorById<T> extends _Constructor<T> {
     new (id: Id<T>): T;
     (id: Id<T>): T;
@@ -18,15 +19,4 @@ declare module "game/prototypes" {
   }
 
   export type Id<T> = string & Tag.OpaqueTag<T>;
-
-  export interface RoomPosition {
-    /**
-     * X position in the room. Can be undefined if `.exists` is false
-     */
-    x: number /* | undefined;*/;
-    /**
-     * Y position in the room. Can be undefined if `.exists` is false
-     */
-    y: number /* | undefined;*/;
-  }
 }

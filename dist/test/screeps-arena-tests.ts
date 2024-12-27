@@ -102,14 +102,14 @@ export function loop(): void {
     );
 
     const findInRangeResult = myTower.findInRange(enemyCreeps, 1); // $ExpectType Creep[]
-    const findPathToResult = myTower.findPathTo(findInRangeResult[0]); // $ExpectType PathStep[]
+    const findPathToResult = myTower.findPathTo(findInRangeResult[0]); // $ExpectType Position[]
     // TODO: findPathTo with options
     const findClosestByPathResult = myTower.findClosestByPath(enemyCreeps); // $ExpectType Creep | null
     // TODO: findClosestByPath with options
 
     // testing utils
     const utilsFindInRangeResult = findInRange(myTower, enemyCreeps, 1); // $ExpectType Creep[]
-    const utilsFindPathToResult = findPath(myTower, utilsFindInRangeResult[0]); // $ExpectType PathStep[]
+    const utilsFindPathToResult = findPath(myTower, utilsFindInRangeResult[0]); // $ExpectType Position[]
     // TODO: findPathTo with options
     // $ExpectType Creep
     const utilsFindClosestByPathResult = findClosestByPath(

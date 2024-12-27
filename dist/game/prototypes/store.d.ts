@@ -1,7 +1,7 @@
 declare module "game/prototypes" {
   import { ResourceConstant } from "game/constants";
 
-  interface StoreBase<POSSIBLE_RESOURCES extends ResourceConstant> {
+  interface StoreBase {
     /**
      * Returns capacity of this store for the specified resource. For a general purpose store, it returns total capacity if `resource` is undefined.
      * @param resource The type of the resource.
@@ -24,8 +24,10 @@ declare module "game/prototypes" {
     getFreeCapacity(resource?: ResourceConstant): number | null;
   }
 
-  export type Store<POSSIBLE_RESOURCES extends ResourceConstant> =
-    StoreBase<POSSIBLE_RESOURCES> & { [P in POSSIBLE_RESOURCES]: number } & {
-      [P in Exclude<ResourceConstant, POSSIBLE_RESOURCES>]: 0;
-    };
+  /** An object that class contain resources in its cargo */
+  export type Store<POSSIBLE_RESOURCES extends ResourceConstant> = StoreBase & {
+    [P in POSSIBLE_RESOURCES]: number;
+  } & {
+    [P in Exclude<ResourceConstant, POSSIBLE_RESOURCES>]: 0;
+  };
 }

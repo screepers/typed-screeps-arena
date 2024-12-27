@@ -9,10 +9,12 @@ declare module "game/prototypes" {
     | STRUCTURE_ROAD
     | STRUCTURE_EXTENSION;
 
-  export interface StructureJSON extends RoomObjectJSON {
+  export interface StructureJSON extends GameObjectJSON {
     hits: number;
     hitsMax: number;
   }
+
+  /** The base prototype object of all structures. */
   export interface Structure<T extends StructureConstant = StructureConstant>
     extends GameObject {
     readonly prototype: Structure;

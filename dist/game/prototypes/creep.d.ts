@@ -1,25 +1,28 @@
 declare module "game/prototypes" {
   import { ScoreCollector } from "arena/season_beta/collect_and_control/basic/prototypes";
   import {
-    AnyCreep,
     BodyPartConstant,
-    CreepActionReturnCode,
-    CreepMoveReturnCode,
+    CreepAttackResult,
+    CreepBuildResult,
+    CreepDropResult,
+    CreepHarvestResult,
+    CreepHealResult,
+    CreepMoveResult,
+    CreepPickupResult,
+    CreepPullResult,
+    CreepRangedAttackResult,
+    CreepRangedHealResult,
+    CreepRangedMassAttackResult,
+    CreepTransferResult,
+    CreepWithdrawResult,
     DirectionConstant,
-    ERR_BUSY,
-    ERR_FULL,
-    ERR_INVALID_TARGET,
-    ERR_NOT_ENOUGH_RESOURCES,
-    ERR_NOT_FOUND,
-    ERR_NOT_IN_RANGE,
-    ERR_NOT_OWNER,
-    ERR_NO_BODYPART,
-    ERR_NO_PATH,
-    OK,
     ResourceConstant,
-    ScreepsReturnCode,
   } from "game/constants";
-  import { MoveToOpts } from "game/path-finder";
+  import { FindPathOptions } from "game/path-finder";
+
+  /**
+   * Creeps are units that can move, harvest energy, construct structures, attack another creeps, and perform other actions.
+   */
   export interface Creep extends GameObject {
     readonly prototype: Creep;
     /**
@@ -45,55 +48,56 @@ declare module "game/prototypes" {
      */
     body: Array<{ type: BodyPartConstant; hits: number }>;
     /**
+     * Whether this creep is spawning or not. (undocumented)
+     */
+    spawning: boolean;
+    /**
      * A Store object that contains cargo of this creep.
      */
     store: Store<ResourceConstant>;
     /**
      * Move the creep one square in the specified direction. direction must be one of the following constants:
      */
-    move(direction: DirectionConstant): CreepMoveReturnCode;
+    move(direction: DirectionConstant): CreepMoveResult;
     /**
      * Find the optimal path to the target within the same room and move to it.
      * A shorthand to consequent calls of findPathTo() and move() methods.
      * @param target target can be any object containing x and y properties.
      * @param opts opts is an optional object containing additional options. See /game/utils::findPath for details.
      */
-    moveTo(
-      target: RoomPosition,
-      opts?: MoveToOpts
-    ): CreepMoveReturnCode | ERR_NO_PATH | ERR_INVALID_TARGET | undefined;
+    moveTo(target: Position, opts?: FindPathOptions): CreepMoveResult;
     /**
      * A ranged attack against another creep or structure. Requires the RANGED_ATTACK body part.
      * The target has to be within 3 squares range of the creep.
      */
-    rangedAttack(target: AnyCreep | Structure): CreepActionReturnCode;
+    rangedAttack(target: Creep | Structure): CreepRangedAttackResult;
     /**
      * A ranged attack against all hostile creeps or structures within 3 squares range.
      * Requires the RANGED_ATTACK body part.
      * The attack power depends on the range of each target.
      * Friendly units are not affected.
      */
-    rangedMassAttack(): OK | ERR_NOT_OWNER | ERR_BUSY | ERR_NO_BODYPART;
+    rangedMassAttack(): CreepRangedMassAttackResult;
     /**
      * Attack another creep or structure in a short-ranged attack.
      * Requires the ATTACK body part.
      * The target has to be at an adjacent square to the creep.
      */
-    attack(target: AnyCreep | Structure): CreepActionReturnCode;
+    attack(target: Creep | Structure): CreepAttackResult;
     /**
      * Heal self or another creep.
      * It will restore the target creep’s damaged body parts function and increase the hits counter.
      * Requires the HEAL body part.
      * The target has to be at an adjacent square to the creep.
      */
-    heal(target: AnyCreep): CreepActionReturnCode;
+    heal(target: Creep): CreepHealResult;
     /**
      * Heal another creep at a distance.
      * It will restore the target creep’s damaged body parts function and increase the hits counter.
      * Requires the HEAL body part.
      * The target has to be within 3 squares range of the creep.
      */
-    rangedHeal(target: AnyCreep): CreepActionReturnCode;
+    rangedHeal(target: Creep): CreepRangedHealResult;
 
     /**
      * Harvest energy from the source or resource from minerals or deposits.
@@ -105,9 +109,7 @@ declare module "game/prototypes" {
      * The target has to be at an adjacent square to the creep.
      * @param target The source object to be harvested.
      */
-    harvest(
-      target: Source /* | Mineral | Deposit*/
-    ): CreepActionReturnCode | ERR_NOT_FOUND | ERR_NOT_ENOUGH_RESOURCES;
+    harvest(target: Source /* | Mineral | Deposit*/): CreepHarvestResult;
 
     /**
      * Allow another creep to follow this creep. The fatigue generated for the target's move will be added to the creep instead of the target.
@@ -115,15 +117,7 @@ declare module "game/prototypes" {
      * Requires the MOVE body part. The target must be adjacent to the creep. The creep must move elsewhere, and the target must move towards the creep.
      * @param target The target creep to be pulled.
      */
-    pull(
-      target: Creep
-    ):
-      | OK
-      | ERR_NOT_OWNER
-      | ERR_BUSY
-      | ERR_INVALID_TARGET
-      | ERR_NOT_IN_RANGE
-      | ERR_NO_BODYPART;
+    pull(target: Creep): CreepPullResult;
 
     /**
      * Transfer resource from the creep to another object. The target has to be at adjacent square to the creep.
@@ -132,10 +126,10 @@ declare module "game/prototypes" {
      * @param amount The amount of resources to be transferred. If omitted, all the available carried amount is used.
      */
     transfer(
-      target: AnyCreep | Structure | ScoreCollector,
+      target: Creep | Structure | ScoreCollector,
       resourceType: ResourceConstant,
       amount?: number
-    ): ScreepsReturnCode;
+    ): CreepTransferResult;
 
     /**
      * Withdraw resources from a structure, a tombstone or a ruin.
@@ -153,23 +147,20 @@ declare module "game/prototypes" {
       target: Structure /* | Tombstone | Ruin*/,
       resourceType: ResourceConstant,
       amount?: number
-    ): ScreepsReturnCode;
+    ): CreepWithdrawResult;
 
     /**
      * Drop this resource on the ground.
      * @param resourceType One of the RESOURCE_* constants.
      * @param amount The amount of resource units to be dropped. If omitted, all the available carried amount is used.
      */
-    drop(
-      resourceType: ResourceConstant,
-      amount?: number
-    ): OK | ERR_NOT_OWNER | ERR_BUSY | ERR_NOT_ENOUGH_RESOURCES;
+    drop(resourceType: ResourceConstant, amount?: number): CreepDropResult;
 
     /**
      * Pick up an item (a dropped piece of energy). Needs the CARRY body part. The target has to be at adjacent square to the creep or at the same square.
      * @param target The target object to be picked up.
      */
-    pickup(target: Resource): CreepActionReturnCode | ERR_FULL;
+    pickup(target: Resource): CreepPickupResult;
 
     /**
      * Build a structure at the target construction site using carried energy.
@@ -180,15 +171,7 @@ declare module "game/prototypes" {
      * @param target The target construction site to be built.
      * @returns Result Code: OK, ERR_NOT_OWNER, ERR_BUSY, ERR_NOT_ENOUGH_RESOURCES, ERR_INVALID_TARGET, ERR_NOT_IN_RANGE, ERR_NO_BODYPART, ERR_RCL_NOT_ENOUGH
      */
-    build(
-      target: ConstructionSite
-    ): CreepActionReturnCode | ERR_NOT_ENOUGH_RESOURCES;
-
-    /**
-     * Whether this creep is spawning or not.
-     * This field is undocumented, but very useful.
-     */
-    spawning: boolean;
+    build(target: ConstructionSite): CreepBuildResult;
   }
 
   interface CreepConstructor
