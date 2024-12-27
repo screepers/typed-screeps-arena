@@ -58,7 +58,7 @@ declare module "game/prototypes" {
      * @param options.ignore objects which should not be treated as obstacles during the search
      * @returns the path found as an array of objects containing x and y properties
      */
-    findPathTo(pos: Position, opts?: FindPathOptions): Position[];
+    findPathTo(pos: Position, options?: FindPathOptions): Position[];
 
     /**
      * Find all positions from the given positions array within the specified linear range.
@@ -76,14 +76,22 @@ declare module "game/prototypes" {
     findClosestByRange<T extends Position>(positions: T[]): T | null;
 
     /**
-     * Find a position with the shortest path from the given position, or null otherwise.
-     * @param opts object containing additional options:
-     * ignore: array (objects which should be treated as obstacles during the search)
-     * Any options supported by searchPath method
+     * Find a position with the shortest path from this game object
+     * @param positions The positions to search among. An array of GameObject or any objects containing x and y properties
+     * @param options An object containing additional pathfinding flags
+     * @param options.costMatrix Custom navigation cost data
+     * @param options.plainCost Cost for walking on plain positions. The default is 2
+     * @param options.swampCost Cost for walking on swamp positions. The default is 10
+     * @param options.flee Instead of searching for a path to the goals this will search for a path away from the goals. The default is false
+     * @param options.maxOps The maximum allowed pathfinding operations. The default value is 50000
+     * @param options.maxCost The maximum allowed cost of the path returned. The default is Infinity
+     * @param options.heuristicWeight Weight from 1 to 9 to apply to the heuristic in the A* formula F = G + weight * H. The default value is 1.2
+     * @param options.ignore objects which should not be treated as obstacles during the search
+     * @returns the closest object from positions, or null if there was no valid positions
      */
     findClosestByPath<T extends Position>(
       positions: T[],
-      opts?: FindPathOptions
+      options?: FindPathOptions
     ): T | null;
 
     toJSON(): GameObjectJSON;

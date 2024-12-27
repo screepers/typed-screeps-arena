@@ -149,7 +149,7 @@ declare module "game/utils" {
   export function findClosestByPath<T extends Position>(
     fromPos: Position,
     positions: T[],
-    opts?: FindPathOptions
+    options?: FindPathOptions
   ): T;
 
   /**

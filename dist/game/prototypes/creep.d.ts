@@ -63,9 +63,9 @@ declare module "game/prototypes" {
      * Find the optimal path to the target within the same room and move to it.
      * A shorthand to consequent calls of findPathTo() and move() methods.
      * @param target target can be any object containing x and y properties.
-     * @param opts opts is an optional object containing additional options. See /game/utils::findPath for details.
+     * @param options options is an optional object containing additional options. See findPath for details.
      */
-    moveTo(target: Position, opts?: FindPathOptions): CreepMoveResult;
+    moveTo(target: Position, options?: FindPathOptions): CreepMoveResult;
     /**
      * A ranged attack against another creep or structure. Requires the RANGED_ATTACK body part.
      * The target has to be within 3 squares range of the creep.
