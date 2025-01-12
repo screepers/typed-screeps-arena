@@ -90,5 +90,9 @@ declare module "game/path-finder" {
      * An array of the room's objects which should be treated as obstacles during the search
      */
     ignore?: GameObject[];
+    /**
+     * The range to search for the goal. The default is 0. not documented but accepted
+     */
+    range?: number;
   }
 }
