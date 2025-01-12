@@ -70,7 +70,13 @@ declare module "game/prototypes" {
      * Set desired directions where the creep should move when spawned.
      * @param directions An array with the direction constants
      */
-    setDirections(directions: DirectionConstant[]): OK | ERR_NOT_OWNER | ERR_INVALID_ARGS;
+    setDirections(
+      directions: DirectionConstant[]
+    ): OK | ERR_NOT_OWNER | ERR_INVALID_ARGS;
+    /**
+     * get the directions where the creep should move when spawned.
+     */
+    directions: DirectionConstant[];
   }
   interface StructureSpawnConstructor
     extends _Constructor<StructureSpawn>,
